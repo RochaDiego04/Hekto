@@ -2,11 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
+:root {
+  --white: #fff;
+  --primary: #fb2e86;
+  --primaryDark: #f0056a;
+  --primaryLight: #fc5fa2;
+  --secondary: #f9ba00;
+  --secondaryLight: #fff3ce;
+  --tertiary: #7e33e0;
+
+  --black: #101750;
+  --grey3: #8a8fb9;
+  --grey2: #e5e0fc;
+  --grey1: #f8f8fd;
+  --white: #ffffff;
+
+  --danger: #fb2448;
+  --danger-light: #feb9c4;
+  --info: #603eff;
+  --success: #0cc562;
+  --success-dark: #0cc562;
+  --success-light: #92f2bf;
+
+  --title-font: "Josefin Sans", sans-serif;
+  --body-font: "Lato", sans-serif;
 }
 
 html {
@@ -17,4 +36,89 @@ html {
 *::before,
 *::after {
   box-sizing: inherit;
+}
+
+body {
+  font-family: var(--body-font);
+  color: var(--black);
+  font-size: 1rem;
+  font-weight: normal;
+}
+
+/*******************************************
+  FONTS (TITLES)
+ *******************************************/
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--title-font);
+  color: var(--black);
+  text-transform: capitalize;
+}
+
+h1 {
+  font-size: 3.25rem;
+  font-weight: bold;
+  line-height: 4.875rem;
+}
+
+h2 {
+  font-size: 2.75rem;
+  font-weight: bold;
+  line-height: 4.125rem;
+}
+
+h3 {
+  font-size: 2.25rem;
+  font-weight: bold;
+  line-height: 3.375rem;
+}
+
+h4 {
+  font-size: 1.75rem;
+  font-weight: bold;
+  line-height: 2.625rem;
+}
+
+/*******************************************
+  FONTS (SUBTITLES)
+ *******************************************/
+
+h5 {
+  color: var(--black);
+}
+
+h5.subtitle {
+  font-size: 1.625rem;
+  font-weight: bold;
+}
+
+h5.subtitle2 {
+  font-size: 1.375rem;
+  font-weight: bold;
+}
+
+h5.subtitle3 {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+h5.subtitle4 {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+/*******************************************
+  FONTS (BODY)
+ *******************************************/
+
+.bold {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.small {
+  font-size: 0.876rem;
+  font-weight: normal;
 }
