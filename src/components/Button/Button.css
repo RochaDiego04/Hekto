@@ -1,0 +1,98 @@
+.button {
+  padding: 1rem 2.5rem;
+  display: inline-block;
+  border: none;
+  background: transparent;
+  font-family: var(--main-font);
+  text-decoration: none;
+  border-radius: 8px;
+}
+
+.icon-button {
+  padding: 0.375rem 0.875rem;
+  border-radius: 6px;
+  background-color: var(--primary);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.dark.icon-button {
+  padding: 0.375rem 0.875rem;
+  border-radius: 6px;
+  background-color: var(--primaryDark);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.icon-button:hover,
+.dark.icon-button:hover {
+  cursor: pointer;
+  background-color: var(--primaryLight);
+}
+
+.cart-button.icon-button {
+  padding: 0.56rem;
+  border-radius: 50%;
+  background-color: var(--white);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.cart2.cart-button.icon-button {
+  background-color: var(--grey2);
+}
+.cart3.cart-button.icon-button {
+  background-color: transparent;
+}
+
+.filled-button {
+  padding: 1rem 2.5rem;
+  background-color: var(--primary);
+  color: var(--white);
+}
+
+.filledDark-button {
+  padding: 1rem 2.5rem;
+  background-color: var(--primaryDark);
+  color: var(--white);
+}
+
+.filled-button:hover,
+.filledDark-button:hover {
+  background-color: var(--primaryLight);
+  cursor: pointer;
+}
+
+.filled-button:disabled,
+.filledDark-button:disabled {
+  background: var(--grey3);
+  color: var(--black);
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+.smallGreen-button {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.687rem 1rem;
+  border-radius: 6px;
+  color: var(--white);
+  background-color: var(--success);
+}
+
+.smallDarkGreen-button {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.687rem 1rem;
+  border-radius: 6px;
+  color: var(--white);
+  background-color: var(--success-dark);
+}
+
+.smallDarkGreen-button:hover,
+.smallGreen-button:hover {
+  background-color: var(--success-light);
+}

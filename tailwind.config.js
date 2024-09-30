@@ -28,7 +28,7 @@ export default {
         dangerLight: "#feb9c4",
         info: "#603eff",
         success: "#0cc562",
-        successDark: "#0cc562",
+        successDark: "#00994c",
         successLight: "#92f2bf",
       },
     },
@@ -36,7 +36,7 @@ export default {
       ...theme("colors"),
     }),
     fontFamily: {
-      title: ["Josefin Sans", "sans-serif"],
+      main: ["Josefin Sans", "sans-serif"],
       body: ["Lato", "sans-serif"],
     },
   },
