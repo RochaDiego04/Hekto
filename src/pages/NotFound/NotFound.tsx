@@ -4,7 +4,7 @@ import Button from "../../components/Button/Button";
 
 export default function NotFound() {
   return (
-    <div className=" text-center mt-40">
+    <div className=" text-center p-10 mt-16 md:p-20 md:mt-40">
       <NavLink to="/">
         <HektoLogo
           width="100px"
@@ -17,12 +17,14 @@ export default function NotFound() {
         <span className=" text-primary">Oops!</span> We couldn't found the page
         you're trying to reach
       </h1>
-      <p className=" text-xl">
+      <p className=" text-xl mt-8">
         The link you followed may be broken, or the page may have been removed.
       </p>
-      <Button mode="filled" className=" mt-8">
-        <NavLink to="/">Home</NavLink>
-      </Button>
+      <NavLink to="/">
+        <Button mode="filled" className=" mt-8">
+          Home
+        </Button>
+      </NavLink>
     </div>
   );
 }

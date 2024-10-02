@@ -5,8 +5,10 @@ import TopBar from "../components/TopBar";
 export default function MainLayout() {
   return (
     <>
-      <TopBar />
-      <NavBar />
+      <header>
+        <TopBar />
+        <NavBar />
+      </header>
       <div style={{ padding: "20px" }}>
         <Outlet />
       </div>

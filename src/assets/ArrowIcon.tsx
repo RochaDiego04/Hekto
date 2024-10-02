@@ -23,8 +23,8 @@ export default function ArrowIcon({
         <path
           d="M2.99951 5L7.99967 10L12.9998 5"
           stroke={fillColor}
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
       </svg>
     </div>
