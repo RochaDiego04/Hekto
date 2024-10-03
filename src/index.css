@@ -124,3 +124,18 @@ h5.subtitle4 {
   font-size: 0.876rem;
   font-weight: normal;
 }
+
+/*******************************************
+  FONTS (LABELS)
+ *******************************************/
+
+label {
+  font-size: 1rem;
+}
+label.bold {
+  font-size: 1rem;
+  font-weight: 700;
+}
+label.small {
+  font-size: 0.876rem;
+}

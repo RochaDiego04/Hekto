@@ -43,7 +43,7 @@ export default function NavBar() {
 
       <div
         className={`absolute md:hidden top-[100px] left-0 w-full bg-white shadow-lg flex flex-col items-center gap-6 font-semibold text-lg transform transition-transform ${
-          isMenuOpen ? "opacity-100" : "opacity-0"
+          isMenuOpen ? "opacity-100  z-[10]" : "opacity-0 z-[-1]"
         }`}
         style={{ transition: "transform 0.3s ease, opacity 0.3s ease" }}
       >

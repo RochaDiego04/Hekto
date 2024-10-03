@@ -44,18 +44,24 @@
   background-color: var(--primaryLight);
 }
 
-.cart-button.icon-button {
+.option-button.icon-button {
   padding: 0.56rem;
   border-radius: 50%;
-  background-color: var(--white);
+  background-color: transparent;
   display: inline-flex;
+  justify-content: center;
   align-items: center;
   gap: 0.5rem;
 }
 
-.cart2.cart-button.icon-button {
+.option-button.icon-button:hover {
   background-color: var(--grey2);
 }
+
+.option-button.icon-button:active {
+  background-color: var(--white);
+}
+
 .cart3.cart-button.icon-button {
   background-color: transparent;
 }
@@ -104,7 +110,10 @@
   background-color: var(--success-dark);
 }
 
-.smallDarkGreen-button:hover,
+.smallDarkGreen-button:hover {
+  background-color: var(--success);
+}
+
 .smallGreen-button:hover {
-  background-color: var(--success-light);
+  background-color: var(--success-dark);
 }
