@@ -16,11 +16,18 @@
   transition: background-color 100ms ease-in-out;
 }
 
-.card-slider--btn:hover {
-  background-color: rgba(0, 0, 0, 0.2);
+.card-slider--btn--left:hover,
+.card-slider--btn--left:focus-visible {
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0));
 }
 
-.card-slider--btn .card-slider-btn > * {
+.card-slider--btn--right:hover,
+.card-slider--btn--right:focus-visible {
+  background: linear-gradient(to left, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0));
+}
+
+.card-slider-btn > *,
+.card-slider-btn:focus-visible > * {
   stroke: white;
   fill: black;
   width: 2rem;
@@ -33,6 +40,12 @@
   cursor: pointer;
   width: 1rem;
   height: 1rem;
+  transition: scale 150ms ease-in;
+}
+
+.card-slider--dot-btn:hover,
+.card-slider--dot-btn:focus-visible {
+  scale: 1.2;
 }
 
 .card-slider--dot-btn > * {
@@ -40,4 +53,9 @@
   fill: black;
   height: 100%;
   width: 100%;
+}
+
+.card-slider--dot-btn:focus-visible,
+.card-slider--btn:focus-visible {
+  outline: auto;
 }

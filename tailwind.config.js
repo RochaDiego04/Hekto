@@ -30,6 +30,7 @@ export default {
         success: "#0cc562",
         successDark: "#00994c",
         successLight: "#92f2bf",
+        bgCardSlider: "#f2f0ff",
       },
     },
     backgroundColor: (theme) => ({

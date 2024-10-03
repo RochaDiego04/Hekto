@@ -1,5 +1,11 @@
 import { useState } from "react";
-import { ArrowBigLeft, ArrowBigRight, Circle, CircleDot } from "lucide-react";
+import {
+  ArrowBigLeft,
+  ArrowBigRight,
+  Circle,
+  CircleDot,
+  Diamond,
+} from "lucide-react";
 
 import "./CardSlider.css";
 
@@ -24,12 +30,12 @@ export default function CardSlider() {
   }
 
   return (
-    <div className=" w-full bg-green-300 h-[60vh] relative">
-      <div className=" w-full h-full flex ">
+    <div className=" w-full bg-bgCardSlider h-[60vh] relative">
+      <div className=" w-full h-full flex overflow-hidden">
         {cardsInfo.map((info) => {
           return (
             <div
-              className="card-slider--card w-full min-w-full h-full overflow-hidden"
+              className="card-slider--card w-full min-w-full h-full"
               style={{ translate: `${-100 * cardIndex}%` }}
             >
               {info}
@@ -38,20 +44,34 @@ export default function CardSlider() {
         })}
       </div>
       {/* <img src="./src/assets/img/lamp.png" alt="" /> */}
-      <button className="card-slider--btn left-0" onClick={showPrevCard}>
-        <ArrowBigLeft />
+      <button
+        className="card-slider--btn card-slider--btn--left left-0"
+        onClick={showPrevCard}
+        aria-label="View Previous Card"
+      >
+        <ArrowBigLeft className="stroke-primary" />
       </button>
-      <button className="card-slider--btn right-0" onClick={showNextCard}>
-        <ArrowBigRight />
+      <button
+        className="card-slider--btn card-slider--btn--right right-0"
+        onClick={showNextCard}
+        aria-label="View Next Card"
+      >
+        <ArrowBigRight className="stroke-primary" />
       </button>
 
-      <div className="absolute bottom-2 left-[50%] translate-x-[-50%] flex gap-1">
+      <div className="absolute bottom-2 left-[50%] translate-x-[-50%] flex gap-3">
         {cardsInfo.map((_, index) => (
           <button
             className="card-slider--dot-btn"
+            aria-label={`View Card Number ${index + 1}`}
             onClick={() => setCardIndex(index)}
           >
-            {index === cardIndex ? <CircleDot></CircleDot> : <Circle></Circle>}
+            <Diamond
+              aria-hidden
+              className={`${
+                index === cardIndex ? "fill-primary" : "fill-none"
+              } stroke-primary`}
+            />
           </button>
         ))}
       </div>
