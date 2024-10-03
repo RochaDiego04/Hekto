@@ -29,9 +29,9 @@ const productsData = [
 
 export default function FeaturedProducts() {
   return (
-    <section className=" pt-24 pb-24">
+    <section className="p-14 md:p-24">
       <h2 className=" text-center mb-12">Featured Products</h2>
-      <div className="flex justify-center gap-8">
+      <div className="grid grid-cols-2 md:grid-cols-4 max-w-cardContainer mx-auto justify-center gap-8">
         {productsData.map((productInfo) => (
           <ProductCard
             productInfo={productInfo}
