@@ -1,9 +1,10 @@
-import Slider from "./Slider";
+import { ReactNode } from "react";
+import ImageSlider from "./CardSlider/CardSlider";
 
-export default function Header() {
-  return (
-    <>
-      <Slider></Slider>
-    </>
-  );
+type HeaderProps = {
+  children: ReactNode;
+};
+
+export default function Header({ children }: HeaderProps) {
+  return <header>{children}</header>;
 }
