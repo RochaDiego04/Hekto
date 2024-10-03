@@ -16,7 +16,7 @@ export default function NavBar() {
   ];
 
   return (
-    <nav className=" flex justify-between items-center px-10">
+    <nav className=" flex justify-between items-center px-10 max-w-7xl mx-auto">
       <NavLink to="/" className=" inline-block py-5">
         <HektoLogo
           width="100px"
@@ -25,9 +25,16 @@ export default function NavBar() {
         ></HektoLogo>
       </NavLink>
 
-      <NavList items={navItems} className="hidden md:flex" />
+      <NavList
+        items={navItems}
+        className="hidden md:flex"
+        onCloseMenu={setIsMenuOpen}
+      />
 
-      <CustomInput Icon={SearchIcon}></CustomInput>
+      <CustomInput
+        className=" justify-self-end"
+        Icon={SearchIcon}
+      ></CustomInput>
 
       <i
         className="bx bx-menu md:hidden block text-3xl cursor-pointer"
@@ -40,7 +47,11 @@ export default function NavBar() {
         }`}
         style={{ transition: "transform 0.3s ease, opacity 0.3s ease" }}
       >
-        <NavList items={navItems} className="flex flex-col items-center" />
+        <NavList
+          items={navItems}
+          className="flex flex-col items-center pt-5 pb-8"
+          onCloseMenu={setIsMenuOpen}
+        />
       </div>
     </nav>
   );
