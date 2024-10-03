@@ -1,13 +1,9 @@
-import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
-
-import Header from "./components/Header";
-import TopBar from "./components/TopBar";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import NotFound from "./pages/NotFound/NotFound";
 import Home from "./pages/Home/Home";
-import Footer from "./components/Footer";
-import NavBar from "./components/NavBar";
-import MainLayout from "./layout/Mainlayout";
+import MainLayout from "./layout/MainLayout";
+import ProductsPage from "./pages/Products/ProductsPage";
 
 function App() {
   const router = createBrowserRouter([
@@ -16,6 +12,8 @@ function App() {
       element: <MainLayout />, // Main layout for all common pages
       children: [
         { index: true, element: <Home /> }, // Default home page
+        { path: "products/", element: <ProductsPage /> },
+        // { path: 'products/:productId', element: <ProductsPage /> },
       ],
     },
     { path: "*", element: <NotFound /> }, // 404 page without layout

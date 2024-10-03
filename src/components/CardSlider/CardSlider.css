@@ -1,0 +1,61 @@
+.card-slider--card {
+  display: block;
+  flex-shrink: 0;
+  flex-grow: 0;
+  transition: translate 500ms ease-in-out;
+}
+
+.card-slider--btn {
+  all: unset;
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  padding: 1rem;
+  cursor: pointer;
+  transition: background-color 100ms ease-in-out;
+}
+
+.card-slider--btn--left:hover,
+.card-slider--btn--left:focus-visible {
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0));
+}
+
+.card-slider--btn--right:hover,
+.card-slider--btn--right:focus-visible {
+  background: linear-gradient(to left, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0));
+}
+
+.card-slider-btn > *,
+.card-slider-btn:focus-visible > * {
+  stroke: white;
+  fill: black;
+  width: 2rem;
+  height: 2rem;
+}
+
+.card-slider--dot-btn {
+  all: unset;
+  display: block;
+  cursor: pointer;
+  width: 1rem;
+  height: 1rem;
+  transition: scale 150ms ease-in;
+}
+
+.card-slider--dot-btn:hover,
+.card-slider--dot-btn:focus-visible {
+  scale: 1.2;
+}
+
+.card-slider--dot-btn > * {
+  stroke: white;
+  fill: black;
+  height: 100%;
+  width: 100%;
+}
+
+.card-slider--dot-btn:focus-visible,
+.card-slider--btn:focus-visible {
+  outline: auto;
+}

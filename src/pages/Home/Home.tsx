@@ -1,3 +1,9 @@
+import ImageSlider from "../../components/CardSlider/CardSlider";
+
 export default function Home() {
-  return <>home component works</>;
+  return (
+    <>
+      <ImageSlider />
+    </>
+  );
 }
