@@ -10,8 +10,8 @@ import "./Button/Button.css";
 export default function TopBar() {
   return (
     <div className="bg-tertiary flex justify-evenly">
-      <ul className="flex gap-12">
-        <li>
+      <ul className="flex gap-3 md:gap-12">
+        <li className="flex items-center justify-center">
           <Button
             buttonType="anchor"
             className="items-center text-white"
@@ -20,10 +20,10 @@ export default function TopBar() {
               <EnvelopIcon fillColor="#fff" width="15px" height="15px" />
             )}
           >
-            mhhasanul@gmail.com
+            <p className=" hidden md:block">mhhasanul@gmail.com</p>
           </Button>
         </li>
-        <li>
+        <li className="flex items-center justify-center">
           <Button
             buttonType="anchor"
             className="items-center text-white"
@@ -32,13 +32,13 @@ export default function TopBar() {
               <PhoneIcon fillColor="#fff" width="15px" height="15px" />
             )}
           >
-            (12345)67890
+            <p className=" hidden md:block">(12345)67890</p>
           </Button>
         </li>
       </ul>
 
-      <ul className="flex items-center">
-        <li>
+      <ul className="flex items-center text-[13px] md:text-[16px]">
+        <li className="flex items-center justify-center">
           <Button
             buttonType="anchor"
             className="items-center text-white flex-row-reverse"
@@ -50,7 +50,7 @@ export default function TopBar() {
             English
           </Button>
         </li>
-        <li>
+        <li className="flex items-center justify-center">
           <Button
             buttonType="anchor"
             className="items-center text-white flex-row-reverse"
@@ -62,7 +62,7 @@ export default function TopBar() {
             USD
           </Button>
         </li>
-        <li>
+        <li className="flex items-center justify-center">
           <Button
             buttonType="anchor"
             className="items-center text-white flex-row-reverse"
@@ -71,10 +71,10 @@ export default function TopBar() {
               <UserIcon fillColor="#fff" width="15px" height="15px" />
             )}
           >
-            Login
+            <p className=" hidden md:block">Login</p>
           </Button>
         </li>
-        <li>
+        <li className="flex items-center justify-center">
           <Button
             buttonType="anchor"
             className="items-center text-white flex-row-reverse"
@@ -83,7 +83,7 @@ export default function TopBar() {
               <HeartIcon fillColor="#fff" width="15px" height="15px" />
             )}
           >
-            Wishlist
+            <p className=" hidden md:block">Wishlist</p>
           </Button>
         </li>
         <li>
