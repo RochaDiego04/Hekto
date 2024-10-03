@@ -33,6 +33,9 @@ export default {
         bgCardSlider: "#f2f0ff",
       },
     },
+    maxWidth: {
+      cardContainer: "80rem",
+    },
     backgroundColor: (theme) => ({
       ...theme("colors"),
     }),

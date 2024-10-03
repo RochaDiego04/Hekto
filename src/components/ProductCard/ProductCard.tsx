@@ -17,7 +17,7 @@ type ProductCardProps = {
 
 export default function ProductCard({ productInfo }: ProductCardProps) {
   return (
-    <div className="productCard bg-white shadow-xl max-w-[20%] text-center">
+    <div className="productCard bg-white shadow-xl text-center">
       <div className="productCard__topSection mb-6">
         <img
           src="./src/assets/img/products/product_1.jpg"
