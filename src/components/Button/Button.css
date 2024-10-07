@@ -15,8 +15,8 @@
   align-items: center;
   gap: 0.5rem;
 }
-
-.light.icon-button {
+.light-button {
+  color: var(--white);
   padding: 0.375rem 0.875rem;
   border-radius: 6px;
   background-color: var(--primary);
@@ -25,7 +25,16 @@
   gap: 0.5rem;
 }
 
-.dark.icon-button {
+.light-button.icon-button {
+  padding: 0.375rem 0.875rem;
+  border-radius: 6px;
+  background-color: var(--primary);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.dark-button.icon-button {
   padding: 0.375rem 0.875rem;
   border-radius: 6px;
   background-color: var(--primaryDark);
@@ -38,8 +47,8 @@
   cursor: pointer;
 }
 
-.light.icon-button:hover,
-.dark.icon-button:hover {
+.light-button.icon-button:hover,
+.dark-button.icon-button:hover {
   cursor: pointer;
   background-color: var(--primaryLight);
 }
@@ -99,6 +108,7 @@
   border-radius: 6px;
   color: var(--white);
   background-color: var(--success);
+  transition: all 150ms ease-in;
 }
 
 .smallDarkGreen-button {

@@ -32,9 +32,12 @@ export default {
         successLight: "#92f2bf",
         bgCardSlider: "#f2f0ff",
       },
+      padding: {
+        maxContainer: "3.5rem",
+      },
     },
     maxWidth: {
-      cardContainer: "80rem",
+      maxContainer: "80rem",
     },
     backgroundColor: (theme) => ({
       ...theme("colors"),
