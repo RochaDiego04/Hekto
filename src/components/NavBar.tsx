@@ -16,7 +16,7 @@ export default function NavBar() {
   ];
 
   return (
-    <nav className=" flex justify-between items-center px-10 max-w-7xl mx-auto">
+    <nav className=" flex justify-between items-center px-10 max-w-7xl mx-auto gap-5">
       <NavLink to="/" className=" inline-block py-5">
         <HektoLogo
           width="100px"
@@ -32,8 +32,9 @@ export default function NavBar() {
       />
 
       <CustomInput
-        className=" justify-self-end"
+        className=" justify-self-end w-full md:w-auto"
         Icon={SearchIcon}
+        buttonMode="light"
       ></CustomInput>
 
       <i

@@ -12,7 +12,7 @@ function App() {
       element: <MainLayout />, // Main layout for all common pages
       children: [
         { index: true, element: <Home /> }, // Default home page
-        { path: "products/", element: <ProductsPage /> },
+        { path: "products", element: <ProductsPage /> },
         // { path: 'products/:productId', element: <ProductsPage /> },
       ],
     },
