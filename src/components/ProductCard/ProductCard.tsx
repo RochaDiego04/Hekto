@@ -2,17 +2,13 @@ import CartIcon from "../../assets/CartIcon";
 import HeartIcon from "../../assets/HeartIcon";
 import ZoomIcon from "../../assets/ZoomIcon";
 import Button from "../Button/Button";
-import "./ProductCard.css";
 
-interface ProductCard {
-  id: string;
-  productName: string;
-  codeCategory: string;
-  price: number;
-}
+import { formatter } from "../../util/formatPrice";
+import "./ProductCard.css";
+import { ProductInfo } from "../../interfaces/ProductInfo";
 
 type ProductCardProps = {
-  productInfo: ProductCard;
+  productInfo: ProductInfo;
 };
 
 export default function ProductCard({ productInfo }: ProductCardProps) {
@@ -20,9 +16,9 @@ export default function ProductCard({ productInfo }: ProductCardProps) {
     <div className="productCard bg-white shadow-xl text-center">
       <div className="productCard__topSection mb-6">
         <img
-          src="./src/assets/img/products/product_1.jpg"
+          src={productInfo.images[0]}
           alt=""
-          className="w-full h-full"
+          className="w-full h-[250px] object-cover"
         />
         <div className="productCard__topSection__optionButtons">
           <Button
@@ -60,12 +56,14 @@ export default function ProductCard({ productInfo }: ProductCardProps) {
         </Button>
       </div>
       <label className="bold text-primary mb-6 block">
-        {productInfo.productName}
+        {productInfo.title}
       </label>
       <label className="small mb-2 block text-grey3">
-        Code -{productInfo.codeCategory}
+        Code -{productInfo.code}
       </label>
-      <label className="bold mb-2 block text-black">{productInfo.price}</label>
+      <label className="bold mb-6 block text-black">
+        {formatter.format(productInfo.price)}
+      </label>
     </div>
   );
 }
