@@ -18,7 +18,7 @@ export default function ProductCard({ productInfo }: ProductCardProps) {
         <img
           src={productInfo.images[0]}
           alt=""
-          className="w-full h-[250px] object-cover"
+          className="w-full h-[200px] md:h-[250px] object-cover"
         />
         <div className="productCard__topSection__optionButtons">
           <Button
@@ -59,7 +59,7 @@ export default function ProductCard({ productInfo }: ProductCardProps) {
         {productInfo.title}
       </label>
       <label className="small mb-2 block text-grey3">
-        Code -{productInfo.code}
+        Code - {productInfo.code}
       </label>
       <label className="bold mb-6 block text-black">
         {formatter.format(productInfo.price)}

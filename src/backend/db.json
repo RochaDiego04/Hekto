@@ -39,6 +39,33 @@
       "discountPrice": 35,
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tellus porttitor purus, et volutpat sit.",
       "images": ["/src/assets/products/blackWatches.jpg"]
+    },
+    {
+      "id": 5,
+      "title": "Black Watches",
+      "code": "Y523201",
+      "price": 55,
+      "discountPrice": 35,
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tellus porttitor purus, et volutpat sit.",
+      "images": ["/src/assets/products/blackWatches.jpg"]
+    },
+    {
+      "id": 6,
+      "title": "Black Watches",
+      "code": "Y523201",
+      "price": 55,
+      "discountPrice": 35,
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tellus porttitor purus, et volutpat sit.",
+      "images": ["/src/assets/products/blackWatches.jpg"]
+    },
+    {
+      "id": 7,
+      "title": "Black Watches",
+      "code": "Y523201",
+      "price": 55,
+      "discountPrice": 35,
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tellus porttitor purus, et volutpat sit.",
+      "images": ["/src/assets/products/blackWatches.jpg"]
     }
   ]
 }
