@@ -11,8 +11,11 @@
     "start": "json-server --watch src/backend/db.json --port 5000"
   },
   "dependencies": {
+    "@tanstack/react-query": "^4.36.1",
+    "i": "^0.3.7",
     "json-server": "^1.0.0-beta.3",
     "lucide-react": "^0.447.0",
+    "npm": "^10.9.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.26.2"

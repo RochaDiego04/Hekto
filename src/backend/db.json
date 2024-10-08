@@ -7,7 +7,7 @@
       "price": 42,
       "discountPrice": 62,
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tellus porttitor purus, et volutpat sit.",
-      "images": ["/src/products/watches.jpg"]
+      "images": ["./src/assets/products/watches.jpg"]
     },
     {
       "id": 2,
@@ -17,9 +17,9 @@
       "discountPrice": 90,
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tellus porttitor purus, et volutpat sit.",
       "images": [
-        "/src/products/headphones.jpg",
-        "/src/products/headphones1.jpg",
-        "/src/products/headphones2.jpg"
+        "/src/assets/products/headphones.jpg",
+        "/src/assets/products/headphones1.jpg",
+        "/src/assets/products/headphones2.jpg"
       ]
     },
     {
@@ -29,7 +29,7 @@
       "price": 99,
       "discountPrice": 89,
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tellus porttitor purus, et volutpat sit.",
-      "images": ["/src/products/laptop.jpg"]
+      "images": ["/src/assets/products/laptop.jpg"]
     },
     {
       "id": 4,
@@ -38,7 +38,34 @@
       "price": 55,
       "discountPrice": 35,
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tellus porttitor purus, et volutpat sit.",
-      "images": ["/src/products/blackWatches.jpg"]
+      "images": ["/src/assets/products/blackWatches.jpg"]
+    },
+    {
+      "id": 5,
+      "title": "Black Watches",
+      "code": "Y523201",
+      "price": 55,
+      "discountPrice": 35,
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tellus porttitor purus, et volutpat sit.",
+      "images": ["/src/assets/products/blackWatches.jpg"]
+    },
+    {
+      "id": 6,
+      "title": "Black Watches",
+      "code": "Y523201",
+      "price": 55,
+      "discountPrice": 35,
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tellus porttitor purus, et volutpat sit.",
+      "images": ["/src/assets/products/blackWatches.jpg"]
+    },
+    {
+      "id": 7,
+      "title": "Black Watches",
+      "code": "Y523201",
+      "price": 55,
+      "discountPrice": 35,
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tellus porttitor purus, et volutpat sit.",
+      "images": ["/src/assets/products/blackWatches.jpg"]
     }
   ]
 }

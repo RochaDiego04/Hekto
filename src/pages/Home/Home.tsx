@@ -1,6 +1,5 @@
-import ImageSlider from "../../components/CardSlider/CardSlider";
+import ImageSlider from "../../components/Slider/CardSlider";
 import FeaturedProducts from "../../components/FeaturedProducts";
-
 export default function Home() {
   return (
     <>
