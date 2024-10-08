@@ -1,8 +1,8 @@
-import { useState } from "react";
-import { Diamond } from "lucide-react";
-import "./CardSlider.css";
-import ProductCard from "../ProductCard/ProductCard";
+import { useMemo, useState } from "react";
+import { Minus } from "lucide-react";
 import { ProductInfo } from "../../interfaces/ProductInfo";
+import ProductCard from "../ProductCard/ProductCard";
+import "./CardSlider.css";
 
 const ITEMS_PER_SLIDE = 4;
 
@@ -14,17 +14,25 @@ export default function ProductSlider({ productsInfo }: ProductSliderProps) {
   const [slideIndex, setSlideIndex] = useState(0);
 
   // Total number of slides needed
-  const totalSlides = Math.ceil(productsInfo.length / ITEMS_PER_SLIDE);
+  const totalSlides = useMemo(
+    () => Math.ceil(productsInfo.length / ITEMS_PER_SLIDE),
+    [productsInfo]
+  );
 
   // Get the products for each slide
-  const getProductsForSlide = (slideIndex: number) => {
-    const startIndex = slideIndex * ITEMS_PER_SLIDE;
-    return productsInfo.slice(startIndex, startIndex + ITEMS_PER_SLIDE);
-  };
+  const getProductsForSlide = useMemo(() => {
+    return (slideIndex: number) => {
+      const startIndex = slideIndex * ITEMS_PER_SLIDE;
+      return productsInfo.slice(startIndex, startIndex + ITEMS_PER_SLIDE);
+    };
+  }, [productsInfo]);
 
   return (
-    <div className="w-full bg-red-300 relative">
-      <div className="w-full h-full flex overflow-hidden">
+    <div className="w-full relative">
+      <div
+        className="w-full h-full flex overflow-hidden "
+        style={{ willChange: "transform" }}
+      >
         {Array.from({ length: totalSlides }).map((_, gridSlideIndex) => (
           <div
             key={gridSlideIndex}
@@ -49,11 +57,11 @@ export default function ProductSlider({ productsInfo }: ProductSliderProps) {
             aria-label={`View Slide Number ${index + 1}`}
             onClick={() => setSlideIndex(index)}
           >
-            <Diamond
+            <Minus
               aria-hidden
               className={`${
-                index === slideIndex ? "fill-primary" : "fill-none"
-              } stroke-primary`}
+                index === slideIndex ? "stroke-primary" : "stroke-[#FEBAD7]"
+              } product-slider--line-btn`}
             />
           </button>
         ))}

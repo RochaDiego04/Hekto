@@ -16,6 +16,10 @@
   transition: background-color 100ms ease-in-out;
 }
 
+.product-slider--line-btn {
+  stroke-width: 6;
+}
+
 .card-slider--btn--left:hover,
 .card-slider--btn--left:focus-visible {
   background: linear-gradient(to right, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0));
