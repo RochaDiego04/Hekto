@@ -3,7 +3,8 @@ export interface ProductInfo {
   title: string;
   code: string;
   price: number;
-  discountPrice: number;
+  discountPrice: number | null;
+  stars: number;
   description: string;
   images: Array<string>;
 }
