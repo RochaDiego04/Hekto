@@ -6,5 +6,9 @@ export default class FetchError extends Error {
     super(message);
     this.code = code;
     this.info = info;
+
+    Object.setPrototypeOf(this, FetchError.prototype);
+
+    this.name = this.constructor.name;
   }
 }

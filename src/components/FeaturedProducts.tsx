@@ -1,7 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
-import { fetchFeaturedProducts } from "../util/http";
 import { ProductInfo } from "../interfaces/ProductInfo";
 import ProductSlider from "./Slider/ProductSlider";
+import { DotLoader } from "react-spinners";
+import FetchError from "../classes/FetchError";
+import { fetchFeaturedProducts } from "../util/http";
 
 export default function FeaturedProducts() {
   const {
@@ -9,14 +11,33 @@ export default function FeaturedProducts() {
     isLoading,
     isError,
     error,
-  } = useQuery<ProductInfo[]>({
+  } = useQuery<ProductInfo[], FetchError>({
     queryKey: ["featuredProducts"],
     queryFn: fetchFeaturedProducts,
   });
 
-  if (isLoading) {
-    return <p>Loading...</p>;
-  }
+  if (isLoading)
+    return (
+      <section className="p-maxContainer md:p-24">
+        <h2 className="text-center mb-12">Featured Products</h2>
+        <DotLoader color="#f0056a" className="mx-auto"></DotLoader>
+      </section>
+    );
+
+  if (isError)
+    return (
+      <section className="p-maxContainer md:p-24 bg-dangerLight">
+        <h2 className="text-center mb-12">Featured Products</h2>
+        <p className=" text-black">
+          <span className="bold text-danger">Error Code:</span>{" "}
+          {error.code ?? "N/A"}
+        </p>
+        <p className=" text-black">
+          <span className="bold text-danger">Error Message:</span>{" "}
+          {error.message ?? "N/A"}
+        </p>
+      </section>
+    );
 
   return (
     <section className="p-maxContainer md:p-24">
