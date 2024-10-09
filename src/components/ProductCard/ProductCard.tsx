@@ -2,6 +2,7 @@ import CartIcon from "../../assets/CartIcon";
 import HeartIcon from "../../assets/HeartIcon";
 import ZoomIcon from "../../assets/ZoomIcon";
 import Button from "../Button/Button";
+import { Link } from "react-router-dom";
 
 import "./ProductCard.css";
 import { ProductInfo } from "../../interfaces/ProductInfo";
@@ -47,13 +48,14 @@ export default function ProductCard({ productInfo }: ProductCardProps) {
           ></Button>
         </div>
 
-        <Button
-          className="productCard__topSection__detailsButton w-auto mx-auto"
-          mode="smallGreen"
-          href="#"
+        <Link
+          to={`/products/${productInfo.id.toString()}`}
+          className="productCard__topSection__detailsButton"
         >
-          View Details
-        </Button>
+          <Button className=" w-auto mx-auto" mode="smallGreen" href="#">
+            View Details
+          </Button>
+        </Link>
       </div>
       <label className="bold text-primary mb-6 block">
         {productInfo.title}

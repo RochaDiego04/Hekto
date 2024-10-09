@@ -33,11 +33,7 @@ export default function Button({
     <>
       {isAnchor ? (
         <a className={cssClasses} {...props}>
-          {Icon && (
-            <span className="button-icon">
-              <Icon />
-            </span>
-          )}
+          {Icon && <Icon />}
           {children}
         </a>
       ) : (
