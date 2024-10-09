@@ -7,6 +7,7 @@
       "price": 42,
       "discountPrice": 62,
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tellus porttitor purus, et volutpat sit.",
+      "stars": 5,
       "images": ["./src/assets/products/watches.jpg"]
     },
     {
@@ -16,6 +17,7 @@
       "price": 99,
       "discountPrice": 90,
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tellus porttitor purus, et volutpat sit.",
+      "stars": 4.2,
       "images": [
         "/src/assets/products/headphones.jpg",
         "/src/assets/products/headphones1.jpg",
@@ -29,6 +31,7 @@
       "price": 99,
       "discountPrice": 89,
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tellus porttitor purus, et volutpat sit.",
+      "stars": 3.5,
       "images": ["/src/assets/products/laptop.jpg"]
     },
     {
@@ -38,6 +41,7 @@
       "price": 55,
       "discountPrice": 35,
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tellus porttitor purus, et volutpat sit.",
+      "stars": 3.7,
       "images": ["/src/assets/products/blackWatches.jpg"]
     },
     {
@@ -47,6 +51,7 @@
       "price": 55,
       "discountPrice": 35,
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tellus porttitor purus, et volutpat sit.",
+      "stars": 4.8,
       "images": ["/src/assets/products/blackWatches.jpg"]
     },
     {
@@ -56,6 +61,7 @@
       "price": 55,
       "discountPrice": 35,
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tellus porttitor purus, et volutpat sit.",
+      "stars": 4,
       "images": ["/src/assets/products/blackWatches.jpg"]
     },
     {
@@ -65,6 +71,7 @@
       "price": 55,
       "discountPrice": 35,
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tellus porttitor purus, et volutpat sit.",
+      "stars": 3,
       "images": ["/src/assets/products/blackWatches.jpg"]
     }
   ]

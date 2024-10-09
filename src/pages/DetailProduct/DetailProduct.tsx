@@ -4,6 +4,10 @@ import { fetchProducts } from "../../util/http";
 import { ProductInfo } from "../../interfaces/ProductInfo";
 import FetchError from "../../classes/FetchError";
 import ImageShowCase from "../../components/ImageShowCase";
+import { formatter } from "../../util/formatPrice";
+import Button from "../../components/Button/Button";
+import HeartIcon from "../../assets/HeartIcon";
+import StarRating from "../../components/StarRating";
 
 export default function DetailProduct() {
   const { productId } = useParams();
@@ -23,14 +27,39 @@ export default function DetailProduct() {
   return (
     <section className="flex">
       <ImageShowCase />
-      <div>
-        <h3>Headphones</h3>
-        {productData && (
-          <>
-            <p>{productData.title}</p> <p>{productData.description}</p>
-          </>
-        )}
-      </div>
+
+      {productData && (
+        <div className="h-96">
+          <h3 className="mb-2">{productData.title}</h3>
+          <StarRating rating={productData.stars} className=" mb-6" />
+          <p className=" inline-flex gap-4 justify-center mb-6">
+            {productData.discountPrice ? (
+              <>
+                {formatter.format(productData.discountPrice)}
+                <span className="text-primary line-through">
+                  {formatter.format(productData.price)}
+                </span>
+              </>
+            ) : (
+              formatter.format(productData.price)
+            )}
+          </p>
+          <p className=" text-grey3 mb-16">{productData.description}</p>
+          <div className="flex items-center gap-8">
+            <Button className="py-3" mode="filled" href="#">
+              Add To Cart
+            </Button>
+            <Button
+              mode="option"
+              className="items-center w-9 h-9"
+              href="#"
+              Icon={() => (
+                <HeartIcon fillColor="#7e33e0" width="18px" height="18px" />
+              )}
+            ></Button>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
