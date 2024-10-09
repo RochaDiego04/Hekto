@@ -12,8 +12,8 @@ export default function FeaturedProducts() {
     isError,
     error,
   } = useQuery<ProductInfo[], FetchError>({
-    queryKey: ["featuredProducts"],
-    queryFn: fetchFeaturedProducts,
+    queryKey: ["featuredProducts", { limit: 6 }],
+    queryFn: ({ signal }) => fetchFeaturedProducts({ signal, limit: 6 }),
   });
 
   if (isLoading)
