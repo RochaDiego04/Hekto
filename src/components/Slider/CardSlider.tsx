@@ -52,7 +52,7 @@ export default function CardSlider() {
         <ArrowBigRight className="stroke-primary" />
       </button> */}
 
-      <div className="absolute bottom-2 left-[50%] translate-x-[-50%] flex gap-3">
+      <div className="absolute bottom-2 mb-5 left-[50%] translate-x-[-50%] flex gap-3">
         {cardsInfo.map((_, index) => (
           <button
             key={index}
