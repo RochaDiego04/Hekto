@@ -5,14 +5,16 @@ import { DotLoader } from "react-spinners";
 import FetchError from "../classes/FetchError";
 import { fetchFeaturedProducts } from "../util/http";
 
-export default function FeaturedProducts() {
+const LIMIT = 5;
+export default function TrendingProducts() {
   const {
     data: featuredProductsData,
     isLoading,
     isError,
     error,
-  } = useQuery<ProductInfo[], FetchError>(["featuredProducts"], ({ signal }) =>
-    fetchFeaturedProducts({ signal })
+  } = useQuery<ProductInfo[], FetchError>(
+    ["featuredProducts", { limit: LIMIT }],
+    ({ signal }) => fetchFeaturedProducts({ signal, limit: LIMIT })
   );
 
   const renderContent = () => {
@@ -38,14 +40,14 @@ export default function FeaturedProducts() {
     return featuredProductsData ? (
       <ProductSlider
         productsInfo={featuredProductsData}
-        productCardMode="productCard1"
+        productCardMode="productCard3"
       />
     ) : null;
   };
 
   return (
     <section className="p-maxContainer md:p-24">
-      <h2 className="text-center">Featured Products</h2>
+      <h2 className="text-center">Trending Products</h2>
       {renderContent()}
     </section>
   );

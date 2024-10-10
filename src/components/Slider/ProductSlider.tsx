@@ -8,9 +8,13 @@ const ITEMS_PER_SLIDE = 4;
 
 type ProductSliderProps = {
   productsInfo: ProductInfo[];
+  productCardMode: "productCard1" | "productCard2" | "productCard3";
 };
 
-export default function ProductSlider({ productsInfo }: ProductSliderProps) {
+export default function ProductSlider({
+  productsInfo,
+  productCardMode,
+}: ProductSliderProps) {
   const [slideIndex, setSlideIndex] = useState(0);
 
   // Total number of slides needed
@@ -44,7 +48,7 @@ export default function ProductSlider({ productsInfo }: ProductSliderProps) {
             {getProductsForSlide(gridSlideIndex).map((productInfo) => (
               <ProductCardWrapper
                 key={productInfo.id}
-                mode="productCard1"
+                mode={productCardMode}
                 productInfo={productInfo}
               />
             ))}

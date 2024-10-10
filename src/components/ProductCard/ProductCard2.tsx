@@ -48,25 +48,37 @@ export default function ProductCard2({ productInfo }: ProductCard2Props) {
   );
 }
 
-const OptionButtons = () => (
-  <div className="productCard--2__topSection__optionButtons">
-    <Button
-      mode="option"
-      className="items-center w-9 h-9"
-      href="#"
-      Icon={() => <CartIcon fillColor="#7e33e0" width="18px" height="18px" />}
-    ></Button>
-    <Button
-      mode="option"
-      className="items-center w-9 h-9"
-      href="#"
-      Icon={() => <HeartIcon fillColor="#7e33e0" width="18px" height="18px" />}
-    ></Button>
-    <Button
-      mode="option"
-      className="items-center w-9 h-9"
-      href="#"
-      Icon={() => <ZoomIcon fillColor="#7e33e0" width="18px" height="18px" />}
-    ></Button>
-  </div>
-);
+const OptionButtons = () => {
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+    e.preventDefault();
+  };
+
+  return (
+    <div className="productCard--2__topSection__optionButtons">
+      <Button
+        mode="option"
+        className="items-center w-9 h-9"
+        href="#"
+        Icon={() => <CartIcon fillColor="#7e33e0" width="18px" height="18px" />}
+        onClick={handleClick}
+      ></Button>
+      <Button
+        mode="option"
+        className="items-center w-9 h-9"
+        href="#"
+        Icon={() => (
+          <HeartIcon fillColor="#7e33e0" width="18px" height="18px" />
+        )}
+        onClick={handleClick}
+      ></Button>
+      <Button
+        mode="option"
+        className="items-center w-9 h-9"
+        href="#"
+        Icon={() => <ZoomIcon fillColor="#7e33e0" width="18px" height="18px" />}
+        onClick={handleClick}
+      ></Button>
+    </div>
+  );
+};
