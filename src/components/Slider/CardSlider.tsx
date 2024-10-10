@@ -24,7 +24,7 @@ export default function CardSlider() {
   // }
 
   return (
-    <div className=" w-full bg-bgCardSlider h-[60vh] relative">
+    <div className=" w-full bg-bgLightGrey h-[60vh] relative">
       <div className=" w-full h-full flex overflow-hidden">
         {cardsInfo.map((info) => {
           return (

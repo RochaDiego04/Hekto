@@ -5,7 +5,7 @@ import Button from "../Button/Button";
 
 export default function FooterBottom() {
   return (
-    <div className=" bg-grey2 py-5 px-maxContainer flex justify-between items-center">
+    <div className=" bg-bgLightGrey py-5 px-maxContainer flex justify-between items-center">
       <p className=" text-sm text-grey3">©Webecy - All Rights Reserved</p>
       <div>
         <Button

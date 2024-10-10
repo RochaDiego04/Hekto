@@ -29,7 +29,7 @@ export function TabsComponent({ tabs, renderProduct }: TabsComponentProps) {
   return (
     <div>
       {/* Tabs */}
-      <div className="flex items-center justify-center gap-16 mb-16">
+      <div className="flex flex-wrap items-center justify-center gap-6 md:gap-16 mb-16">
         {tabs.map((tab, index) => (
           <Button
             key={index}

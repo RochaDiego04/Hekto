@@ -24,7 +24,7 @@ export default function ProductCard2({ productInfo }: ProductCard2Props) {
           <OptionButtons />
         </div>
 
-        <div className="p-2 flex">
+        <div className="p-2 flex flex-wrap">
           <p className="mr-auto">{productInfo.title}</p>
           <div className="justify-self-end flex gap-4">
             {productInfo.discountPrice ? (
