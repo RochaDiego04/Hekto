@@ -6,7 +6,7 @@
 }
 
 .productCard:hover {
-  box-shadow: 0.6rem 2.5rem 2rem 0rem rgba(16, 23, 80, 0.2);
+  box-shadow: 0.6rem 1.2rem 1.7rem 0rem rgba(16, 23, 80, 0.2);
   transform: translateY(-1.5rem);
 }
 
@@ -52,6 +52,39 @@
   margin-bottom: 0.3rem;
 }
 
+/* STYLES FOR CARD 2 */
+.productCard--2 {
+  overflow: hidden;
+}
+
+.productCard--2:hover .productCard--2__topSection__optionButtons {
+  display: flex;
+  flex-direction: column;
+}
+
+.productCard--2__topSection {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+}
+
+.productCard--2__topSection img {
+  grid-column: 1 / 1;
+  grid-row: 1 / 1;
+}
+
+.productCard--2__topSection__optionButtons {
+  grid-column: 1 / 1;
+  grid-row: 1 / 2;
+  align-self: end;
+
+  display: none;
+  gap: 0.2rem;
+  margin: 0.5rem;
+
+  animation: moveInBottom 0.5s ease-in-out;
+}
+
 @keyframes moveInTop {
   0% {
     opacity: 0;
@@ -60,5 +93,16 @@
   100% {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes moveInBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(15px) scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
   }
 }

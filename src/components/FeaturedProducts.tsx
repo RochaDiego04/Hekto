@@ -16,35 +16,35 @@ export default function FeaturedProducts() {
     queryFn: fetchFeaturedProducts,
   });
 
-  if (isLoading)
-    return (
-      <section className="p-maxContainer md:p-24">
-        <h2 className="text-center mb-12">Featured Products</h2>
-        <DotLoader color="#f0056a" className="mx-auto"></DotLoader>
-      </section>
-    );
+  const renderContent = () => {
+    if (isLoading) {
+      return <DotLoader color="#f0056a" className="mx-auto" />;
+    }
 
-  if (isError)
-    return (
-      <section className="p-maxContainer md:p-24 bg-dangerLight">
-        <h2 className="text-center mb-12">Featured Products</h2>
-        <p className=" text-black">
-          <span className="bold text-danger">Error Code:</span>{" "}
-          {error.code ?? "N/A"}
-        </p>
-        <p className=" text-black">
-          <span className="bold text-danger">Error Message:</span>{" "}
-          {error.message ?? "N/A"}
-        </p>
-      </section>
-    );
+    if (isError) {
+      return (
+        <div className="bg-dangerLight">
+          <p className="text-black">
+            <span className="bold text-danger">Error Code:</span>{" "}
+            {error.code ?? "N/A"}
+          </p>
+          <p className="text-black">
+            <span className="bold text-danger">Error Message:</span>{" "}
+            {error.message ?? "N/A"}
+          </p>
+        </div>
+      );
+    }
+
+    return featuredProductsData ? (
+      <ProductSlider productsInfo={featuredProductsData} />
+    ) : null;
+  };
 
   return (
     <section className="p-maxContainer md:p-24">
-      <h2 className="text-center mb-12">Featured Products</h2>
-      {featuredProductsData && (
-        <ProductSlider productsInfo={featuredProductsData} />
-      )}
+      <h2 className="text-center">Featured Products</h2>
+      {renderContent()}
     </section>
   );
 }

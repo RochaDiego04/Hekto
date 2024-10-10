@@ -1,8 +1,8 @@
 import { useMemo, useState } from "react";
 import { Minus } from "lucide-react";
 import { ProductInfo } from "../../interfaces/ProductInfo";
-import ProductCard from "../ProductCard/ProductCard";
 import "./CardSlider.css";
+import ProductCardWrapper from "../ProductCard/ProductCardWrapper";
 
 const ITEMS_PER_SLIDE = 4;
 
@@ -36,13 +36,17 @@ export default function ProductSlider({ productsInfo }: ProductSliderProps) {
         {Array.from({ length: totalSlides }).map((_, gridSlideIndex) => (
           <div
             key={gridSlideIndex}
-            className={`grid grid-cols-2 md:grid-cols-${ITEMS_PER_SLIDE} gap-4 w-full min-w-full h-full card-slider--card p-10 pb-20 transition-transform duration-300`}
+            className={`grid grid-cols-2 md:grid-cols-${ITEMS_PER_SLIDE} gap-4 w-full min-w-full h-full card-slider--card px-10 pt-10 pb-20 transition-transform duration-300`}
             style={{
               transform: `translateX(${-100 * slideIndex}%)`,
             }}
           >
             {getProductsForSlide(gridSlideIndex).map((productInfo) => (
-              <ProductCard key={productInfo.id} productInfo={productInfo} />
+              <ProductCardWrapper
+                key={productInfo.id}
+                mode="productCard1"
+                productInfo={productInfo}
+              />
             ))}
           </div>
         ))}

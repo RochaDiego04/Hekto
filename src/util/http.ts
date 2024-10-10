@@ -1,8 +1,37 @@
 import FetchError from "../classes/FetchError";
 
-export async function fetchFeaturedProducts() {
+type fetchFeaturedProductProps = {
+  signal: AbortSignal | undefined;
+  start?: number;
+  end?: number;
+  limit?: number;
+};
+
+export async function fetchFeaturedProducts({
+  signal,
+  start,
+  end,
+  limit,
+}: fetchFeaturedProductProps) {
   try {
-    const response = await fetch("http://localhost:5000/featuredProducts");
+    let url = "http://localhost:5000/featuredProducts";
+    const params = new URLSearchParams();
+
+    if (start !== undefined) {
+      params.append("_start", `${start}`);
+    }
+    if (end !== undefined) {
+      params.append("_end", `${end}`);
+    }
+    if (limit !== undefined) {
+      params.append("_limit", `${limit}`);
+    }
+
+    if (params.toString()) {
+      url += `?${params.toString()}`;
+    }
+
+    const response = await fetch(url);
 
     if (!response.ok) {
       const errorInfo = await response.json();
@@ -24,7 +53,12 @@ export async function fetchFeaturedProducts() {
   }
 }
 
-export async function fetchProducts({ signal, productId }) {
+type fetchProductProps = {
+  signal: AbortSignal | undefined;
+  productId?: string;
+};
+
+export async function fetchProducts({ signal, productId }: fetchProductProps) {
   let url = "http://localhost:5000/featuredProducts";
 
   if (productId) {
