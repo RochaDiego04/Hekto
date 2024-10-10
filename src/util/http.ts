@@ -5,6 +5,7 @@ type fetchFeaturedProductProps = {
   start?: number;
   end?: number;
   limit?: number;
+  productId?: number;
 };
 
 export async function fetchFeaturedProducts({
@@ -12,23 +13,29 @@ export async function fetchFeaturedProducts({
   start,
   end,
   limit,
+  productId,
 }: fetchFeaturedProductProps) {
   try {
     let url = "http://localhost:5000/featuredProducts";
     const params = new URLSearchParams();
 
-    if (start !== undefined) {
-      params.append("_start", `${start}`);
-    }
-    if (end !== undefined) {
-      params.append("_end", `${end}`);
-    }
-    if (limit !== undefined) {
-      params.append("_limit", `${limit}`);
-    }
+    if (productId !== undefined) {
+      // if search by id, ignore other filters
+      url += `/${productId}`;
+    } else {
+      if (start !== undefined) {
+        params.append("_start", `${start}`);
+      }
+      if (end !== undefined) {
+        params.append("_end", `${end}`);
+      }
+      if (limit !== undefined) {
+        params.append("_limit", `${limit}`);
+      }
 
-    if (params.toString()) {
-      url += `?${params.toString()}`;
+      if (params.toString()) {
+        url += `?${params.toString()}`;
+      }
     }
 
     const response = await fetch(url);
@@ -42,8 +49,14 @@ export async function fetchFeaturedProducts({
       );
     }
 
-    const featuredProducts = await response.json();
-    return featuredProducts;
+    let featuredProducts = await response.json();
+
+    // convert single object response to an array (to manage them as the same)
+    if (productId !== undefined && !Array.isArray(featuredProducts)) {
+      featuredProducts = [featuredProducts];
+    }
+
+    return featuredProducts; // if just one object returned, manage it as an array
   } catch (error) {
     throw new FetchError(
       "Failed to fetch featured products. Please check your network or try again later.",
