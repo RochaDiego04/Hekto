@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { DotLoader } from "react-spinners";
 import FetchError from "../../classes/FetchError";
 import { ProductInfo } from "../../interfaces/ProductInfo";
+import Button from "../Button/Button";
 
 type TabsComponentProps = {
   tabs: {
@@ -28,20 +29,22 @@ export function TabsComponent({ tabs, renderProduct }: TabsComponentProps) {
   return (
     <div>
       {/* Tabs */}
-      <div className="tabs">
+      <div className="flex items-center justify-center gap-16 mb-16">
         {tabs.map((tab, index) => (
-          <button
+          <Button
             key={index}
-            className={`${tab.label === activeTab.label ? "bg-red-500" : ""}`}
+            className={`${
+              tab.label === activeTab.label ? "text-primary" : ""
+            } p-0`}
             onClick={() => setActiveTab(tab)}
           >
             {tab.label}
-          </button>
+          </Button>
         ))}
       </div>
 
       {/* Content */}
-      <section className="p-maxContainer md:p-24">
+      <div>
         {isLoading ? (
           <DotLoader color="#f0056a" className="mx-auto" />
         ) : isError ? (
@@ -56,11 +59,11 @@ export function TabsComponent({ tabs, renderProduct }: TabsComponentProps) {
             </p>
           </div>
         ) : (
-          <div className="grid grid-cols-3 grid-rows-2">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-8 grid-rows-2">
             {data && data.map((product) => renderProduct(product))}
           </div>
         )}
-      </section>
+      </div>
     </div>
   );
 }

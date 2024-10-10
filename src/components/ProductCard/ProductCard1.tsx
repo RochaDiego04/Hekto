@@ -3,50 +3,24 @@ import HeartIcon from "../../assets/HeartIcon";
 import ZoomIcon from "../../assets/ZoomIcon";
 import Button from "../Button/Button";
 import { Link } from "react-router-dom";
-
-import "./ProductCard.css";
 import { ProductInfo } from "../../interfaces/ProductInfo";
 import { formatter } from "../../util/formatPrice";
+import "./ProductCard.css";
 
-type ProductCardProps = {
+type ProductCard1Props = {
   productInfo: ProductInfo;
 };
 
-export default function ProductCard({ productInfo }: ProductCardProps) {
+export default function ProductCard1({ productInfo }: ProductCard1Props) {
   return (
     <div className="productCard bg-white shadow-xl text-center">
       <div className="productCard__topSection mb-6">
         <img
           src={productInfo.images[0]}
-          alt=""
-          className="w-full h-[200px] md:h-[250px] object-cover"
+          alt={productInfo.title}
+          className="w-full h-[200px] md:h-[30vh] object-cover"
         />
-        <div className="productCard__topSection__optionButtons">
-          <Button
-            mode="option"
-            className="items-center w-9 h-9"
-            href="#"
-            Icon={() => (
-              <CartIcon fillColor="#7e33e0" width="18px" height="18px" />
-            )}
-          ></Button>
-          <Button
-            mode="option"
-            className="items-center w-9 h-9"
-            href="#"
-            Icon={() => (
-              <HeartIcon fillColor="#7e33e0" width="18px" height="18px" />
-            )}
-          ></Button>
-          <Button
-            mode="option"
-            className="items-center w-9 h-9"
-            href="#"
-            Icon={() => (
-              <ZoomIcon fillColor="#7e33e0" width="18px" height="18px" />
-            )}
-          ></Button>
-        </div>
+        <OptionButtons />
 
         <Link
           to={`/products/${productInfo.id.toString()}`}
@@ -69,3 +43,26 @@ export default function ProductCard({ productInfo }: ProductCardProps) {
     </div>
   );
 }
+
+const OptionButtons = () => (
+  <div className="productCard__topSection__optionButtons">
+    <Button
+      mode="option"
+      className="items-center w-9 h-9"
+      href="#"
+      Icon={() => <CartIcon fillColor="#7e33e0" width="18px" height="18px" />}
+    ></Button>
+    <Button
+      mode="option"
+      className="items-center w-9 h-9"
+      href="#"
+      Icon={() => <HeartIcon fillColor="#7e33e0" width="18px" height="18px" />}
+    ></Button>
+    <Button
+      mode="option"
+      className="items-center w-9 h-9"
+      href="#"
+      Icon={() => <ZoomIcon fillColor="#7e33e0" width="18px" height="18px" />}
+    ></Button>
+  </div>
+);
