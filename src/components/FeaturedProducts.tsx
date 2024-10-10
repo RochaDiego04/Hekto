@@ -23,7 +23,7 @@ export default function FeaturedProducts() {
 
     if (isError) {
       return (
-        <div className="bg-dangerLight">
+        <div className="bg-dangerLight p-4">
           <p className="text-black">
             <span className="bold text-danger">Error Code:</span>{" "}
             {error.code ?? "N/A"}
