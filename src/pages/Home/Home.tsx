@@ -3,6 +3,7 @@ import FeaturedProducts from "../../components/FeaturedProducts";
 import LatestProducts from "../../components/LatestProducts";
 import UniqueBanner from "../../components/UniqueBanner";
 import TrendingProducts from "../../components/TrendingProducts";
+import DiscountItems from "../../components/DiscountItems";
 export default function Home() {
   return (
     <>
@@ -11,6 +12,7 @@ export default function Home() {
       <LatestProducts />
       <UniqueBanner />
       <TrendingProducts />
+      <DiscountItems />
     </>
   );
 }

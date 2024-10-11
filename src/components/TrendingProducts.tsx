@@ -8,12 +8,12 @@ import { fetchFeaturedProducts } from "../util/http";
 const LIMIT = 5;
 export default function TrendingProducts() {
   const {
-    data: featuredProductsData,
+    data: trendingProductsData,
     isLoading,
     isError,
     error,
   } = useQuery<ProductInfo[], FetchError>(
-    ["featuredProducts", { limit: LIMIT }],
+    ["trendingProducts", { limit: LIMIT }],
     ({ signal }) => fetchFeaturedProducts({ signal, limit: LIMIT })
   );
 
@@ -37,9 +37,9 @@ export default function TrendingProducts() {
       );
     }
 
-    return featuredProductsData ? (
+    return trendingProductsData ? (
       <ProductSlider
-        productsInfo={featuredProductsData}
+        productsInfo={trendingProductsData}
         productCardMode="productCard3"
       />
     ) : null;

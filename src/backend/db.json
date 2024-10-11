@@ -74,5 +74,17 @@
       "stars": 3,
       "images": ["/src/assets/products/blackWatches.jpg"]
     }
+  ],
+  "discountCards": [
+    {
+      "productId": 2,
+      "additionalInfo": [
+        "Material expose like metals",
+        "Clear lines and geometric figures",
+        "Simple neutral colors",
+        "Material expose like metals"
+      ],
+      "productImage": ["/src/assets/products/blackWatches.jpg"]
+    }
   ]
 }

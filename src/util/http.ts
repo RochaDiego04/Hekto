@@ -1,93 +1,49 @@
-import FetchError from "../classes/FetchError";
+import {
+  buildUrl,
+  fetchData,
+  fetchOptionsProps,
+} from "./boilerplateHttpFunctions";
 
-type fetchFeaturedProductProps = {
-  signal: AbortSignal | undefined;
-  start?: number;
-  end?: number;
-  limit?: number;
-};
+// Fetch Featured Products
+type fetchFeaturedProductProps = fetchOptionsProps;
 
 export async function fetchFeaturedProducts({
   signal,
   start,
   end,
   limit,
+  productId,
 }: fetchFeaturedProductProps) {
-  try {
-    let url = "http://localhost:5000/featuredProducts";
-    const params = new URLSearchParams();
+  const url = buildUrl("http://localhost:5000/featuredProducts", {
+    productId,
+    start,
+    end,
+    limit,
+  });
+  let featuredProducts = await fetchData(url, signal);
 
-    if (start !== undefined) {
-      params.append("_start", `${start}`);
-    }
-    if (end !== undefined) {
-      params.append("_end", `${end}`);
-    }
-    if (limit !== undefined) {
-      params.append("_limit", `${limit}`);
-    }
-
-    if (params.toString()) {
-      url += `?${params.toString()}`;
-    }
-
-    const response = await fetch(url);
-
-    if (!response.ok) {
-      const errorInfo = await response.json();
-      throw new FetchError(
-        "An error occurred fetching featured products",
-        response.status,
-        errorInfo
-      );
-    }
-
-    const featuredProducts = await response.json();
-    return featuredProducts;
-  } catch (error) {
-    throw new FetchError(
-      "Failed to fetch featured products. Please check your network or try again later.",
-      0,
-      null
-    );
+  // Ensure the result is always an array for consistency
+  if (productId !== undefined && !Array.isArray(featuredProducts)) {
+    featuredProducts = [featuredProducts];
   }
+
+  return featuredProducts;
 }
 
+// Fetch Products by ID
 type fetchProductProps = {
-  signal: AbortSignal | undefined;
+  signal?: AbortSignal;
   productId?: string;
 };
 
 export async function fetchProducts({ signal, productId }: fetchProductProps) {
-  let url = "http://localhost:5000/featuredProducts";
+  const url = buildUrl("http://localhost:5000/featuredProducts", { productId });
+  const products = await fetchData(url, signal);
 
-  if (productId) {
-    url += "/?id=" + productId;
+  // If fetching by productId, return the first (and only) product
+  if (productId && Array.isArray(products)) {
+    return products[0];
   }
-  console.log(url);
-  try {
-    const response = await fetch(url);
 
-    if (!response.ok) {
-      const errorInfo = await response.json();
-      throw new FetchError(
-        "An error occurred fetching products",
-        response.status,
-        errorInfo
-      );
-    }
-
-    const products = await response.json();
-
-    if (productId) {
-      return products[0]; // return the only element in the array
-    }
-    return products;
-  } catch (error) {
-    throw new FetchError(
-      "Failed to fetch products. Please check your network or try again later.",
-      0,
-      null
-    );
-  }
+  return products;
 }

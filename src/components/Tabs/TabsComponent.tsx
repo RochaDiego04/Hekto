@@ -8,17 +8,22 @@ import Button from "../Button/Button";
 type TabsComponentProps = {
   tabs: {
     label: string;
-    queryKey: (string | { limit: number })[];
+    queryKey: (string | { limit: number } | { productId: number })[];
     queryFn: ({
       signal,
     }: {
       signal: AbortSignal | undefined;
     }) => Promise<ProductInfo[]>;
   }[];
-  renderProduct: (product: ProductInfo) => JSX.Element;
+  renderProduct?: (product: ProductInfo) => JSX.Element;
+  renderDiscountCards?: (product: ProductInfo) => JSX.Element;
 };
 
-export function TabsComponent({ tabs, renderProduct }: TabsComponentProps) {
+export function TabsComponent({
+  tabs,
+  renderProduct,
+  renderDiscountCards,
+}: TabsComponentProps) {
   const [activeTab, setActiveTab] = useState(tabs[0]);
 
   const { data, isLoading, isError, error } = useQuery<
@@ -59,9 +64,21 @@ export function TabsComponent({ tabs, renderProduct }: TabsComponentProps) {
             </p>
           </div>
         ) : (
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-8 grid-rows-2">
-            {data && data.map((product) => renderProduct(product))}
-          </div>
+          <>
+            {/* Render products */}
+            {renderProduct && (
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-8 grid-rows-2">
+                {data && data.map((product) => renderProduct(product))}
+              </div>
+            )}
+
+            {/* Render discount cards */}
+            {renderDiscountCards && (
+              <div className="">
+                {data && data.map((product) => renderDiscountCards(product))}
+              </div>
+            )}
+          </>
         )}
       </div>
     </div>
