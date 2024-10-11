@@ -39,7 +39,7 @@ export default function ProductSlider({
   return (
     <div className="w-full relative">
       <div
-        className="w-full h-full flex overflow-hidden"
+        className="w-full h-full flex overflow-hidden "
         style={{ willChange: "transform" }}
       >
         {Array.from({ length: totalSlides }).map((_, gridSlideIndex) => (
@@ -50,32 +50,13 @@ export default function ProductSlider({
               transform: `translateX(${-100 * slideIndex}%)`,
             }}
           >
-            {getProductsForSlide(gridSlideIndex).map((productInfo) => {
-              if (
-                productCardMode === "categoriesCard" &&
-                "categoryName" in productInfo
-              ) {
-                return (
-                  <ProductCardWrapper
-                    key={productInfo.id}
-                    mode="categoriesCard"
-                    productInfo={productInfo as ProductCategories}
-                  />
-                );
-              } else if (
-                productCardMode !== "categoriesCard" &&
-                "productName" in productInfo
-              ) {
-                return (
-                  <ProductCardWrapper
-                    key={productInfo.id}
-                    mode={productCardMode}
-                    productInfo={productInfo as ProductInfo}
-                  />
-                );
-              }
-              return null; // Handle case where the productInfo doesn't match the mode
-            })}
+            {getProductsForSlide(gridSlideIndex).map((productInfo) => (
+              <ProductCardWrapper
+                key={productInfo.id}
+                mode={productCardMode}
+                productInfo={productInfo}
+              />
+            ))}
           </div>
         ))}
       </div>
