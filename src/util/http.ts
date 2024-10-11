@@ -47,6 +47,31 @@ export async function fetchDiscountCard({
   return featuredProducts;
 }
 
+type fetchProductCategoriesProps = fetchOptionsProps;
+
+export async function fetchProductCategories({
+  signal,
+  start,
+  end,
+  limit,
+  productId,
+}: fetchProductCategoriesProps) {
+  const url = buildUrl("http://localhost:5000/productCategories", {
+    productId,
+    start,
+    end,
+    limit,
+  });
+  let featuredProducts = await fetchData(url, signal);
+
+  // Ensure the result is always an array for consistency
+  if (productId !== undefined && !Array.isArray(featuredProducts)) {
+    featuredProducts = [featuredProducts];
+  }
+
+  return featuredProducts;
+}
+
 // Fetch Products by ID
 type fetchProductProps = {
   signal?: AbortSignal;

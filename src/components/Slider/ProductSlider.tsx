@@ -3,12 +3,17 @@ import { Minus } from "lucide-react";
 import { ProductInfo } from "../../interfaces/ProductInfo";
 import "./CardSlider.css";
 import ProductCardWrapper from "../ProductCard/ProductCardWrapper";
+import { ProductCategories } from "../../interfaces/ProductCategories";
 
 const ITEMS_PER_SLIDE = 4;
 
 type ProductSliderProps = {
-  productsInfo: ProductInfo[];
-  productCardMode: "productCard1" | "productCard2" | "productCard3";
+  productsInfo: ProductInfo[] | ProductCategories[];
+  productCardMode:
+    | "productCard1"
+    | "productCard2"
+    | "productCard3"
+    | "categoriesCard";
 };
 
 export default function ProductSlider({
@@ -34,7 +39,7 @@ export default function ProductSlider({
   return (
     <div className="w-full relative">
       <div
-        className="w-full h-full flex overflow-hidden "
+        className="w-full h-full flex overflow-hidden"
         style={{ willChange: "transform" }}
       >
         {Array.from({ length: totalSlides }).map((_, gridSlideIndex) => (
@@ -45,13 +50,32 @@ export default function ProductSlider({
               transform: `translateX(${-100 * slideIndex}%)`,
             }}
           >
-            {getProductsForSlide(gridSlideIndex).map((productInfo) => (
-              <ProductCardWrapper
-                key={productInfo.id}
-                mode={productCardMode}
-                productInfo={productInfo}
-              />
-            ))}
+            {getProductsForSlide(gridSlideIndex).map((productInfo) => {
+              if (
+                productCardMode === "categoriesCard" &&
+                "categoryName" in productInfo
+              ) {
+                return (
+                  <ProductCardWrapper
+                    key={productInfo.id}
+                    mode="categoriesCard"
+                    productInfo={productInfo as ProductCategories}
+                  />
+                );
+              } else if (
+                productCardMode !== "categoriesCard" &&
+                "productName" in productInfo
+              ) {
+                return (
+                  <ProductCardWrapper
+                    key={productInfo.id}
+                    mode={productCardMode}
+                    productInfo={productInfo as ProductInfo}
+                  />
+                );
+              }
+              return null; // Handle case where the productInfo doesn't match the mode
+            })}
           </div>
         ))}
       </div>

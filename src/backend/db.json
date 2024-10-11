@@ -87,5 +87,32 @@
       ],
       "productImage": ["/src/assets/discountCards/headphones.png"]
     }
+  ],
+  "productCategories": [
+    {
+      "id": 1001,
+      "categoryName": "Perfume",
+      "categoryImage": ["/src/assets/categories/perfume.jpg"]
+    },
+    {
+      "id": 1002,
+      "categoryName": "Present Box",
+      "categoryImage": ["/src/assets/categories/present-box.jpg"]
+    },
+    {
+      "id": 1003,
+      "categoryName": "Bracelet",
+      "categoryImage": ["/src/assets/categories/bracelet.jpg"]
+    },
+    {
+      "id": 1004,
+      "categoryName": "Ring",
+      "categoryImage": ["/src/assets/categories/ring.jpg"]
+    },
+    {
+      "id": 1005,
+      "categoryName": "Jewellry",
+      "categoryImage": ["/src/assets/categories/perfume.jpg"]
+    }
   ]
 }

@@ -4,6 +4,8 @@ import LatestProducts from "../../components/LatestProducts";
 import UniqueBanner from "../../components/UniqueBanner";
 import TrendingProducts from "../../components/TrendingProducts";
 import DiscountItems from "../../components/DiscountItems";
+import TopCategories from "../../components/TopCategories";
+
 export default function Home() {
   return (
     <>
@@ -13,6 +15,7 @@ export default function Home() {
       <UniqueBanner />
       <TrendingProducts />
       <DiscountItems />
+      <TopCategories />
     </>
   );
 }
