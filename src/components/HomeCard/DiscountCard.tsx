@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
 import { ProductInfo } from "../../interfaces/ProductInfo";
-import { formatter } from "../../util/formatPrice";
 import Button from "../Button/Button";
 import { DiscountCardInfo } from "../../interfaces/DiscountCardInfo";
 import FetchError from "../../classes/FetchError";
 import { useQuery } from "@tanstack/react-query";
-import { fetchFeaturedProducts } from "../../util/http";
+import { fetchDiscountCard } from "../../util/http";
+import { Check } from "lucide-react";
 
 type DiscountCardProps = {
   productInfo: ProductInfo;
@@ -18,57 +18,51 @@ export default function DiscountCard({ productInfo }: DiscountCardProps) {
     isError,
     error,
   } = useQuery<DiscountCardInfo, FetchError>(
-    ["featuredProducts"],
-    ({ signal }) => fetchFeaturedProducts({ signal })
+    ["discountCards", { cardId: productInfo.id }],
+    ({ signal }) => fetchDiscountCard({ signal, productId: productInfo.id }) // get the card related to the product
   );
 
   return (
     <>
       {discountCardData && productInfo ? (
-        <>
+        <div className="flex justify-around flex-col-reverse md:flex-row">
+          {/* Right side */}
+          <div className="flex flex-col gap-6">
+            <h3 className=" md:mt-12 pt-12">{discountCardData.cardTitle}</h3>
+
+            <h5 className="subtitle2 text-primary">{productInfo.title}</h5>
+
+            <p className="text-grey3">{productInfo.description}</p>
+
+            <ul className="grid grid-cols-2 gap-x-8 gap-y-6">
+              {discountCardData.additionalInfo.map((listElement) => (
+                <li
+                  key={listElement.listId}
+                  className="text-grey3 flex items-center gap-2"
+                >
+                  <Check className=" inline-block"></Check>
+                  {listElement.content}
+                </li>
+              ))}
+            </ul>
+            <div className="flex gap-4 items-center">
+              <Link to={`/products/${productInfo.id}`}>
+                <Button mode="filled">Shop Now</Button>
+              </Link>
+            </div>
+          </div>
+
           {/* Left side */}
-          <div className=" flex-shrink-0 flex justify-center">
+          <div className="flex justify-center">
             <img
-              src="./src/assets/img/unique-banner/sofa.png"
+              src={discountCardData.productImage[0]}
               alt=""
               className="md:mx-auto"
             />
           </div>
-
-          {/* Right side */}
-          <div>
-            <h3 className="my-4 md:my-12">
-              Unique Features Of leatest & Trending Poducts
-            </h3>
-
-            <ul className="flex flex-col gap-4 mb-12">
-              <li className="text-grey3">
-                <span className="inline-block h-2 w-2 bg-primary rounded-full mr-2"></span>
-                All frames constructed with hardwood solids and laminates
-              </li>
-              <li className="text-grey3">
-                <span className="inline-block h-2 w-2 bg-info rounded-full mr-2"></span>
-                Reinforced with double wood dowels, glue, screw - nails corner
-              </li>
-              <li className="text-grey3">
-                <span className="inline-block h-2 w-2 bg-success rounded-full mr-2"></span>
-                Arms, backs and seats are structurally reinforced
-              </li>
-            </ul>
-            <div className="flex gap-4 items-center">
-              <Button className="" mode="filled">
-                Shop Now
-              </Button>
-              <p>
-                B&B Italian Sofa
-                <br />
-                <span> $32.00</span>
-              </p>
-            </div>
-          </div>
-        </>
+        </div>
       ) : (
-        <div>Test div rendering: No data</div>
+        <div>Test div rendering: No Discount card data</div>
       )}
     </>
   );
