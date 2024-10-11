@@ -2,7 +2,7 @@ import { ProductInfo } from "../../interfaces/ProductInfo";
 import DiscountCard from "./DiscountCard";
 
 type HomeCardWrapperProps = {
-  mode: "headerCard" | "discountCard";
+  mode: "discountCard"; // here we can add more card designs
   productInfo: ProductInfo;
 };
 
@@ -11,8 +11,6 @@ export default function HomeCardWrapper({
   productInfo,
 }: HomeCardWrapperProps) {
   switch (mode) {
-    case "headerCard":
-      return <DiscountCard productInfo={productInfo} />;
     case "discountCard":
       return <DiscountCard productInfo={productInfo} />;
     default:
