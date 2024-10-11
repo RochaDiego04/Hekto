@@ -5,7 +5,12 @@ type CustomInputProps = {
   className?: string;
   Icon?: ElementType | null;
   buttonText?: string;
-  buttonMode?: string;
+  buttonMode?:
+    | "option"
+    | "filled"
+    | "filledDark"
+    | "smallGreen"
+    | "smallDarkGreen";
   placeholder?: string;
 };
 
