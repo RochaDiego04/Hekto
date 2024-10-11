@@ -77,14 +77,15 @@
   ],
   "discountCards": [
     {
-      "productId": 2,
+      "id": 2,
+      "cardTitle": "20% Discount Of All Products",
       "additionalInfo": [
-        "Material expose like metals",
-        "Clear lines and geometric figures",
-        "Simple neutral colors",
-        "Material expose like metals"
+        { "listId": 1, "content": "Material expose like metals" },
+        { "listId": 2, "content": "Clear lines and geometric figures" },
+        { "listId": 3, "content": "Simple neutral colors" },
+        { "listId": 4, "content": "Material expose like metals" }
       ],
-      "productImage": ["/src/assets/products/blackWatches.jpg"]
+      "productImage": ["/src/assets/discountCards/headphones.png"]
     }
   ]
 }

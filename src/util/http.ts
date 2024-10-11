@@ -30,6 +30,23 @@ export async function fetchFeaturedProducts({
   return featuredProducts;
 }
 
+type fetchDiscountCardsProps = {
+  signal?: AbortSignal;
+  productId?: number;
+};
+
+export async function fetchDiscountCard({
+  signal,
+  productId,
+}: fetchDiscountCardsProps) {
+  const url = buildUrl("http://localhost:5000/discountCards", {
+    productId,
+  });
+  let featuredProducts = await fetchData(url, signal);
+
+  return featuredProducts;
+}
+
 // Fetch Products by ID
 type fetchProductProps = {
   signal?: AbortSignal;
