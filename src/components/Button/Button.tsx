@@ -4,7 +4,7 @@ type ButtonProps = {
   children?: ReactNode;
   className?: string;
   buttonType?: "button" | "anchor";
-  mode?: string;
+  mode?: "filled" | "filledDark" | "smallGreen" | "smallDarkGreen" | "option";
   Icon?: ElementType | null;
   [key: string]: unknown;
 };
