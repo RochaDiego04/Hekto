@@ -6,6 +6,8 @@ type CustomInputProps = {
   Icon?: ElementType | null;
   buttonText?: string;
   buttonMode?:
+    | "light"
+    | "dark"
     | "option"
     | "filled"
     | "filledDark"

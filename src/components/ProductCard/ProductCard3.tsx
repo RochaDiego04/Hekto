@@ -1,8 +1,3 @@
-import CartIcon from "../../assets/CartIcon";
-import HeartIcon from "../../assets/HeartIcon";
-import ZoomIcon from "../../assets/ZoomIcon";
-import Button from "../Button/Button";
-
 import { Link } from "react-router-dom";
 import { ProductInfo } from "../../interfaces/ProductInfo";
 import { formatter } from "../../util/formatPrice";

@@ -6,6 +6,7 @@ import TrendingProducts from "../../components/TrendingProducts";
 import DiscountItems from "../../components/DiscountItems";
 import TopCategories from "../../components/TopCategories";
 import NewsLetter from "../../components/NewsLetter";
+import LatestBlogs from "../../components/LatestBlogs";
 
 export default function Home() {
   return (
@@ -18,6 +19,7 @@ export default function Home() {
       <DiscountItems />
       <TopCategories />
       <NewsLetter />
+      <LatestBlogs />
     </>
   );
 }
