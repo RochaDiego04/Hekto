@@ -39,7 +39,7 @@ export default function LatestBlog() {
     }
 
     return latestBlogsData ? (
-      <div className="flex gap-8 justify-around">
+      <div className="flex flex-col md:flex-row gap-8 justify-around">
         {latestBlogsData.map((latestBlogData) => (
           <BlogCard latestBlogData={latestBlogData}></BlogCard>
         ))}
