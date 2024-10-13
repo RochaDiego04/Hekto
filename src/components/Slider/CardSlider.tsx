@@ -3,8 +3,6 @@ import { ArrowBigLeft, ArrowBigRight, Diamond } from "lucide-react";
 
 import "./CardSlider.css";
 
-type CardSliderProps = {};
-
 const cardsInfo = ["card 1", "card 2", "card 3"];
 
 export default function CardSlider() {

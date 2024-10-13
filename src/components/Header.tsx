@@ -1,5 +1,4 @@
 import { ReactNode } from "react";
-import ImageSlider from "./Slider/CardSlider";
 
 type HeaderProps = {
   children: ReactNode;

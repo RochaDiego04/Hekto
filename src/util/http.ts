@@ -30,6 +30,7 @@ export async function fetchFeaturedProducts({
   return featuredProducts;
 }
 
+// Fetch Discount Cards (related to products)
 type fetchDiscountCardsProps = {
   signal?: AbortSignal;
   productId?: number;
@@ -42,11 +43,12 @@ export async function fetchDiscountCard({
   const url = buildUrl("http://localhost:5000/discountCards", {
     productId,
   });
-  let featuredProducts = await fetchData(url, signal);
+  const featuredProducts = await fetchData(url, signal);
 
   return featuredProducts;
 }
 
+// Fetch Product Categories
 type fetchProductCategoriesProps = fetchOptionsProps;
 
 export async function fetchProductCategories({
@@ -72,7 +74,7 @@ export async function fetchProductCategories({
   return featuredProducts;
 }
 
-// Fetch Products by ID
+// Fetch Discount Cards (related to products)
 type fetchProductProps = {
   signal?: AbortSignal;
   productId?: string;
@@ -88,4 +90,21 @@ export async function fetchProducts({ signal, productId }: fetchProductProps) {
   }
 
   return products;
+}
+
+// Fetch Latest Blogs
+type fetchLatestBlogsProps = {
+  signal?: AbortSignal;
+  limit?: number;
+};
+
+export async function fetchLatestBlogs({
+  signal,
+  limit,
+}: fetchLatestBlogsProps) {
+  const url = buildUrl("http://localhost:5000/latestBlogs", { limit });
+
+  const latestBlogs = await fetchData(url, signal);
+
+  return latestBlogs;
 }
