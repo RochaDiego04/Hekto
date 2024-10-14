@@ -8,7 +8,6 @@ type CategoryCardProps = {
 };
 
 export default function CategoryCard({ categoryInfo }: CategoryCardProps) {
-  console.log(categoryInfo);
   return (
     <div className="categoryCard  text-center flex flex-col items-center">
       <div className="categoryCard__topSection mb-6 justify-center">

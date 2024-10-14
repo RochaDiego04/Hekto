@@ -5,6 +5,8 @@ import Button from "../Button/Button";
 import { Link } from "react-router-dom";
 import { ProductInfo } from "../../interfaces/ProductInfo";
 import { formatter } from "../../util/formatPrice";
+import { useAppDispatch } from "../../store/hooks";
+import { addItemToCart } from "../../store/cart-slice";
 import "./ProductCard.css";
 
 type ProductCard1Props = {
@@ -12,6 +14,12 @@ type ProductCard1Props = {
 };
 
 export default function ProductCard1({ productInfo }: ProductCard1Props) {
+  const dispatch = useAppDispatch();
+
+  function handleCartClick() {
+    dispatch(addItemToCart(productInfo));
+  }
+
   return (
     <div className="productCard bg-white shadow-xl text-center">
       <div className="productCard__topSection mb-6">
@@ -20,7 +28,7 @@ export default function ProductCard1({ productInfo }: ProductCard1Props) {
           alt={productInfo.title}
           className="w-full h-[200px] md:h-[30vh] object-cover"
         />
-        <OptionButtons />
+        <OptionButtons handleCartClick={handleCartClick} />
 
         <Link
           to={`/products/${productInfo.id.toString()}`}
@@ -44,13 +52,18 @@ export default function ProductCard1({ productInfo }: ProductCard1Props) {
   );
 }
 
-const OptionButtons = () => (
+type OptionButtonsProps = {
+  handleCartClick: () => void;
+};
+
+const OptionButtons = ({ handleCartClick }: OptionButtonsProps) => (
   <div className="productCard__topSection__optionButtons">
     <Button
       mode="option"
       className="items-center w-9 h-9"
       href="#"
       Icon={() => <CartIcon fillColor="#7e33e0" width="18px" height="18px" />}
+      onClick={handleCartClick}
     ></Button>
     <Button
       mode="option"

@@ -19,12 +19,12 @@ const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    addItemToCart(state, action) {
+    addItemToCart(state, action: PayloadAction<ProductInfo>) {
       // redux toolkit makes the state immutable under the hood
       const newItem = action.payload;
       const existingItem = state.items.find((item) => item.id === newItem.id);
       if (!existingItem) {
-        state.items.push;
+        state.items.push(newItem);
       }
     },
   },

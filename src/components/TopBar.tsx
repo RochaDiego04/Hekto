@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import ArrowIcon from "../assets/ArrowIcon";
 import CartIcon from "../assets/CartIcon";
 import EnvelopIcon from "../assets/EnvelopIcon";
@@ -86,15 +87,10 @@ export default function TopBar() {
             <p className=" hidden md:block">Wishlist</p>
           </Button>
         </li>
-        <li>
-          <Button
-            buttonType="anchor"
-            className="items-center text-white flex-row-reverse"
-            href="#"
-            Icon={() => (
-              <CartIcon fillColor="#fff" width="15px" height="15px" />
-            )}
-          ></Button>
+        <li className="flex items-center justify-center">
+          <NavLink to="/cart" className=" inline-block">
+            <CartIcon fillColor="#fff" width="15px" height="15px" />
+          </NavLink>
         </li>
       </ul>
     </div>
