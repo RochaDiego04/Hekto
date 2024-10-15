@@ -6,7 +6,9 @@ import {
   clearCart,
   decreaseQuantity,
   increaseQuantity,
+  submitCart,
 } from "../../store/cart-slice";
+import { CartSubmission } from "../../interfaces/CartSubmission";
 
 export default function ShoppingCart() {
   const dispatch = useAppDispatch();
@@ -15,6 +17,17 @@ export default function ShoppingCart() {
   const subtotal = useAppSelector((state) => state.cart.subtotal);
   const shipping = useAppSelector((state) => state.cart.shipping);
   const total = useAppSelector((state) => state.cart.total);
+
+  function handleSubmit() {
+    const cartData: CartSubmission = {
+      id: `${Date.now()}-${Math.floor(Math.random() * 10000)}`, // random id
+      items,
+      subtotal,
+      shipping,
+      total,
+    };
+    dispatch(submitCart(cartData));
+  }
 
   return (
     <>
@@ -83,7 +96,11 @@ export default function ShoppingCart() {
                 <p>Shipping:</p>
                 <span>{formatter.format(shipping)}</span>
               </div>
-              <Button className="py-3 w-full" mode="filled">
+              <Button
+                className="py-3 w-full"
+                mode="filled"
+                onClick={handleSubmit}
+              >
                 Proceed to checkout
               </Button>
             </div>
