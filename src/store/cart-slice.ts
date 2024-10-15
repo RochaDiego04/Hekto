@@ -105,9 +105,16 @@ const cartSlice = createSlice({
       recalculateTotals(state);
       saveToLocalStorage(state);
     },
+    clearCart(state) {
+      while (state.items.length > 0) {
+        state.items.pop();
+      }
+      recalculateTotals(state);
+      saveToLocalStorage(state);
+    },
   },
 });
 
-export const { addItemToCart, increaseQuantity, decreaseQuantity } =
+export const { addItemToCart, increaseQuantity, decreaseQuantity, clearCart } =
   cartSlice.actions;
 export default cartSlice.reducer;

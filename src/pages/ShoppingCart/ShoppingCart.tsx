@@ -2,7 +2,11 @@ import { Link } from "react-router-dom";
 import Button from "../../components/Button/Button";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { formatter } from "../../util/formatPrice";
-import { decreaseQuantity, increaseQuantity } from "../../store/cart-slice";
+import {
+  clearCart,
+  decreaseQuantity,
+  increaseQuantity,
+} from "../../store/cart-slice";
 
 export default function ShoppingCart() {
   const dispatch = useAppDispatch();
@@ -83,7 +87,10 @@ export default function ShoppingCart() {
                 Proceed to checkout
               </Button>
             </div>
-            <Button className="text-primary block mx-auto p-4">
+            <Button
+              className="text-primary block mx-auto p-4"
+              onClick={() => dispatch(clearCart())}
+            >
               Clear cart
             </Button>
           </div>
