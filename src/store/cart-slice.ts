@@ -1,8 +1,9 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { CartProduct } from "../interfaces/CartProduct";
 import { ProductInfo } from "../interfaces/ProductInfo";
 
 interface CartState {
-  items: Array<ProductInfo>;
+  items: Array<CartProduct>;
   subtotal: number;
   shipping: number;
   total: number;
@@ -15,6 +16,15 @@ const initialState: CartState = {
   total: 0,
 };
 
+const recalculateTotals = (state: CartState) => {
+  state.subtotal = state.items.reduce(
+    (acc, item) => acc + item.price * item.quantity,
+    0
+  );
+  state.shipping = state.subtotal > 100 ? 0 : 10;
+  state.total = state.subtotal + state.shipping;
+};
+
 const cartSlice = createSlice({
   name: "cart",
   initialState,
@@ -23,12 +33,51 @@ const cartSlice = createSlice({
       // redux toolkit makes the state immutable under the hood
       const newItem = action.payload;
       const existingItem = state.items.find((item) => item.id === newItem.id);
-      if (!existingItem) {
-        state.items.push(newItem);
+
+      if (existingItem) {
+        // Increase quantity if the product already exists in the cart
+        existingItem.quantity += 1;
+      } else {
+        const cartProduct: CartProduct = {
+          ...newItem,
+          quantity: 1,
+        };
+        state.items.push(cartProduct);
       }
+
+      recalculateTotals(state);
+    },
+    increaseQuantity(state, action: PayloadAction<CartProduct>) {
+      const existingItem = state.items.find(
+        (item) => item.id === action.payload.id
+      );
+
+      if (existingItem) {
+        existingItem.quantity++;
+      }
+
+      recalculateTotals(state);
+    },
+    decreaseQuantity(state, action: PayloadAction<CartProduct>) {
+      const existingItem = state.items.find(
+        (item) => item.id === action.payload.id
+      );
+
+      if (existingItem) {
+        if (existingItem.quantity > 1) {
+          existingItem.quantity--;
+        } else {
+          state.items = state.items.filter(
+            (item) => item.id !== action.payload.id
+          );
+        }
+      }
+
+      recalculateTotals(state);
     },
   },
 });
 
-export const { addItemToCart } = cartSlice.actions;
+export const { addItemToCart, increaseQuantity, decreaseQuantity } =
+  cartSlice.actions;
 export default cartSlice.reducer;

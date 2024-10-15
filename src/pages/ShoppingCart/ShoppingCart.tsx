@@ -1,10 +1,16 @@
 import { Link } from "react-router-dom";
 import Button from "../../components/Button/Button";
-import { useAppSelector } from "../../store/hooks";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { formatter } from "../../util/formatPrice";
+import { decreaseQuantity, increaseQuantity } from "../../store/cart-slice";
 
 export default function ShoppingCart() {
+  const dispatch = useAppDispatch();
+
   const items = useAppSelector((state) => state.cart.items);
+  const subtotal = useAppSelector((state) => state.cart.subtotal);
+  const shipping = useAppSelector((state) => state.cart.shipping);
+  const total = useAppSelector((state) => state.cart.total);
 
   return (
     <>
@@ -26,7 +32,7 @@ export default function ShoppingCart() {
         <section className="grid grid-cols-[2fr_1fr] gap-8 p-maxContainer md:p-24 md:px-36">
           <div className="flex flex-col gap-6">
             {items.map((item) => (
-              <div className="flex items-center gap-4 bg-white">
+              <div key={item.id} className="flex items-center gap-4 bg-white">
                 <img
                   className="w-36 h-24 object-cover rounded-md mr-8"
                   src={item.images[0]}
@@ -38,11 +44,21 @@ export default function ShoppingCart() {
                 </div>
                 <div className="flex items-center justify-center gap-6 justify-self-end">
                   <div className="flex items-center justify-center border-[1px] border-solid border-grey2 rounded-lg mr-8">
-                    <Button className="p-0 w-8 h-8 small">-</Button>
+                    <Button
+                      className="p-0 w-8 h-8 small"
+                      onClick={() => dispatch(decreaseQuantity(item))}
+                    >
+                      -
+                    </Button>
                     <p className="small w-8 h-8 flex items-center justify-center">
-                      2
+                      {item.quantity}
                     </p>
-                    <Button className="p-0 w-8 h-8 small">+</Button>
+                    <Button
+                      className="p-0 w-8 h-8 small"
+                      onClick={() => dispatch(increaseQuantity(item))}
+                    >
+                      +
+                    </Button>
                   </div>
                   <p className="font-main">{formatter.format(item.price)}</p>
                 </div>
@@ -53,15 +69,15 @@ export default function ShoppingCart() {
             <div className="bg-grey1 p-4 rounded-lg">
               <div className="flex w-full justify-between mr-auto bold p-4 border-b-[1px] border-solid border-grey2">
                 <p>Subtotal:</p>
-                <span className="font-main ">$450.00</span>
+                <span className="font-main ">{formatter.format(subtotal)}</span>
               </div>
               <div className="flex w-full justify-between mr-auto bold p-4 border-b-[1px] border-solid border-grey2">
                 <p>Total:</p>
-                <span className="font-main ">$600.00</span>
+                <span className="font-main ">{formatter.format(total)}</span>
               </div>
               <div className="flex w-full justify-between mr-auto small text-grey3 p-4 mb-4">
                 <p>Shipping:</p>
-                <span>$100.00</span>
+                <span>{formatter.format(shipping)}</span>
               </div>
               <Button className="py-3 w-full" mode="filled">
                 Proceed to checkout
