@@ -4,6 +4,8 @@ import {
   fetchOptionsProps,
 } from "./boilerplateHttpFunctions";
 
+const BASE_URL = import.meta.env.VITE_API_URL;
+
 // Fetch Featured Products
 type fetchFeaturedProductProps = fetchOptionsProps;
 
@@ -14,7 +16,7 @@ export async function fetchFeaturedProducts({
   limit,
   productId,
 }: fetchFeaturedProductProps) {
-  const url = buildUrl("http://localhost:5000/featuredProducts", {
+  const url = buildUrl(`${BASE_URL}/featuredProducts`, {
     productId,
     start,
     end,
@@ -40,7 +42,7 @@ export async function fetchDiscountCard({
   signal,
   productId,
 }: fetchDiscountCardsProps) {
-  const url = buildUrl("http://localhost:5000/discountCards", {
+  const url = buildUrl(`${BASE_URL}/discountCards`, {
     productId,
   });
   const featuredProducts = await fetchData(url, signal);
@@ -58,7 +60,7 @@ export async function fetchProductCategories({
   limit,
   productId,
 }: fetchProductCategoriesProps) {
-  const url = buildUrl("http://localhost:5000/productCategories", {
+  const url = buildUrl(`${BASE_URL}/productCategories`, {
     productId,
     start,
     end,
@@ -81,7 +83,9 @@ type fetchProductProps = {
 };
 
 export async function fetchProducts({ signal, productId }: fetchProductProps) {
-  const url = buildUrl("http://localhost:5000/featuredProducts", { productId });
+  const url = buildUrl(`${BASE_URL}/featuredProducts`, {
+    productId,
+  });
   const products = await fetchData(url, signal);
 
   // If fetching by productId, return the first (and only) product
@@ -102,7 +106,7 @@ export async function fetchLatestBlogs({
   signal,
   limit,
 }: fetchLatestBlogsProps) {
-  const url = buildUrl("http://localhost:5000/latestBlogs", { limit });
+  const url = buildUrl(`${BASE_URL}/latestBlogs`, { limit });
 
   const latestBlogs = await fetchData(url, signal);
 

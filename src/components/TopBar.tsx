@@ -7,8 +7,11 @@ import PhoneIcon from "../assets/PhoneIcon";
 import UserIcon from "../assets/UserIcon";
 import Button from "./Button/Button";
 import "./Button/Button.css";
+import { useAppSelector } from "../store/hooks";
 
 export default function TopBar() {
+  const numberOfItems = useAppSelector((state) => state.cart.totalItems);
+
   return (
     <div className="bg-tertiary flex justify-evenly">
       <ul className="flex gap-3 md:gap-12">
@@ -88,8 +91,11 @@ export default function TopBar() {
           </Button>
         </li>
         <li className="flex items-center justify-center">
-          <NavLink to="/cart" className=" inline-block">
+          <NavLink to="/cart" className="inline-block relative">
             <CartIcon fillColor="#fff" width="15px" height="15px" />
+            <span className="absolute top-[-2px] right-[-7px] bg-red-600 text-white rounded-full px-1 text-[6px]">
+              {numberOfItems}
+            </span>
           </NavLink>
         </li>
       </ul>

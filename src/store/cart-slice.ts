@@ -1,13 +1,40 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { CartProduct } from "../interfaces/CartProduct";
 import { ProductInfo } from "../interfaces/ProductInfo";
+import { CartSubmission } from "../interfaces/CartSubmission";
 
 interface CartState {
   items: Array<CartProduct>;
   subtotal: number;
   shipping: number;
   total: number;
+  totalItems: number;
+  status: "idle" | "loading" | "succeeded" | "failed";
+  error: string | null;
 }
+
+export const submitCart = createAsyncThunk(
+  "cart/submitCart",
+  async (cartItems: CartSubmission, { rejectWithValue }) => {
+    try {
+      const response = await fetch("http://localhost:5000/submitCart", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(cartItems),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to submit cart");
+      }
+
+      return await response.json();
+    } catch (err: any) {
+      return rejectWithValue(err.message);
+    }
+  }
+);
 
 const loadFromLocalStorage = (): CartState => {
   try {
@@ -18,6 +45,9 @@ const loadFromLocalStorage = (): CartState => {
         subtotal: 0,
         shipping: 0,
         total: 0,
+        totalItems: 0,
+        status: "idle",
+        error: null,
       };
     }
     return JSON.parse(serializedState);
@@ -28,6 +58,9 @@ const loadFromLocalStorage = (): CartState => {
       subtotal: 0,
       shipping: 0,
       total: 0,
+      totalItems: 0,
+      status: "idle",
+      error: null,
     };
   }
 };
@@ -49,6 +82,7 @@ const recalculateTotals = (state: CartState) => {
     0
   );
   state.shipping = state.subtotal > 100 ? 0 : 10;
+  state.totalItems = state.items.reduce((acc, item) => acc + item.quantity, 0);
   state.total = state.subtotal + state.shipping;
 };
 
@@ -112,6 +146,23 @@ const cartSlice = createSlice({
       recalculateTotals(state);
       saveToLocalStorage(state);
     },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(submitCart.pending, (state) => {
+        state.status = "loading";
+        state.error = null;
+      })
+      .addCase(submitCart.fulfilled, (state) => {
+        state.status = "succeeded";
+        state.items = [];
+        recalculateTotals(state);
+        saveToLocalStorage(state);
+      })
+      .addCase(submitCart.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.payload as string;
+      });
   },
 });
 
