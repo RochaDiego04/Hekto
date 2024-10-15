@@ -9,12 +9,39 @@ interface CartState {
   total: number;
 }
 
-const initialState: CartState = {
-  items: [],
-  subtotal: 0,
-  shipping: 0,
-  total: 0,
+const loadFromLocalStorage = (): CartState => {
+  try {
+    const serializedState = localStorage.getItem("cart");
+    if (serializedState === null) {
+      return {
+        items: [],
+        subtotal: 0,
+        shipping: 0,
+        total: 0,
+      };
+    }
+    return JSON.parse(serializedState);
+  } catch (e) {
+    console.warn("Error loading cart from localStorage", e);
+    return {
+      items: [],
+      subtotal: 0,
+      shipping: 0,
+      total: 0,
+    };
+  }
 };
+
+const saveToLocalStorage = (state: CartState) => {
+  try {
+    const serializedState = JSON.stringify(state);
+    localStorage.setItem("cart", serializedState);
+  } catch (e) {
+    console.warn("Error saving cart to localStorage", e);
+  }
+};
+
+const initialState: CartState = loadFromLocalStorage();
 
 const recalculateTotals = (state: CartState) => {
   state.subtotal = state.items.reduce(
@@ -46,6 +73,7 @@ const cartSlice = createSlice({
       }
 
       recalculateTotals(state);
+      saveToLocalStorage(state);
     },
     increaseQuantity(state, action: PayloadAction<CartProduct>) {
       const existingItem = state.items.find(
@@ -57,6 +85,7 @@ const cartSlice = createSlice({
       }
 
       recalculateTotals(state);
+      saveToLocalStorage(state);
     },
     decreaseQuantity(state, action: PayloadAction<CartProduct>) {
       const existingItem = state.items.find(
@@ -74,6 +103,7 @@ const cartSlice = createSlice({
       }
 
       recalculateTotals(state);
+      saveToLocalStorage(state);
     },
   },
 });
