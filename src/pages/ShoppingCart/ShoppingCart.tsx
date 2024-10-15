@@ -77,7 +77,9 @@ export default function ShoppingCart() {
                       +
                     </Button>
                   </div>
-                  <p className="font-main">{formatter.format(item.price)}</p>
+                  <p className="font-main">
+                    {formatter.format(item.price * item.quantity)}
+                  </p>
                 </div>
               </div>
             ))}

@@ -8,6 +8,7 @@ interface CartState {
   subtotal: number;
   shipping: number;
   total: number;
+  totalItems: number;
   status: "idle" | "loading" | "succeeded" | "failed";
   error: string | null;
 }
@@ -44,6 +45,7 @@ const loadFromLocalStorage = (): CartState => {
         subtotal: 0,
         shipping: 0,
         total: 0,
+        totalItems: 0,
         status: "idle",
         error: null,
       };
@@ -56,6 +58,7 @@ const loadFromLocalStorage = (): CartState => {
       subtotal: 0,
       shipping: 0,
       total: 0,
+      totalItems: 0,
       status: "idle",
       error: null,
     };
@@ -79,6 +82,7 @@ const recalculateTotals = (state: CartState) => {
     0
   );
   state.shipping = state.subtotal > 100 ? 0 : 10;
+  state.totalItems = state.items.reduce((acc, item) => acc + item.quantity, 0);
   state.total = state.subtotal + state.shipping;
 };
 

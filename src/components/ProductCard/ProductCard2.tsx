@@ -6,12 +6,22 @@ import Button from "../Button/Button";
 import { Link } from "react-router-dom";
 import { ProductInfo } from "../../interfaces/ProductInfo";
 import { formatter } from "../../util/formatPrice";
+import { useAppDispatch } from "../../store/hooks";
+import { addItemToCart } from "../../store/cart-slice";
 
 type ProductCard2Props = {
   productInfo: ProductInfo;
 };
 
 export default function ProductCard2({ productInfo }: ProductCard2Props) {
+  const dispatch = useAppDispatch();
+
+  function handleCartClick(e: React.MouseEvent<HTMLButtonElement>) {
+    e.stopPropagation();
+    e.preventDefault();
+    dispatch(addItemToCart(productInfo));
+  }
+
   return (
     <div className="productCard--2 bg-whiteshadow-lg rounded-md">
       <Link to={`/products/${productInfo.id}`}>
@@ -21,7 +31,7 @@ export default function ProductCard2({ productInfo }: ProductCard2Props) {
             alt={productInfo.title}
             className="w-full h-[35vh] object-cover rounded-md"
           />
-          <OptionButtons />
+          <OptionButtons handleCartClick={handleCartClick} />
         </div>
 
         <div className="p-2 flex flex-wrap">
@@ -48,7 +58,11 @@ export default function ProductCard2({ productInfo }: ProductCard2Props) {
   );
 }
 
-const OptionButtons = () => {
+type OptionButtonsProps = {
+  handleCartClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
+};
+
+const OptionButtons = ({ handleCartClick }: OptionButtonsProps) => {
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
     e.preventDefault();
@@ -61,7 +75,7 @@ const OptionButtons = () => {
         className="items-center w-9 h-9"
         href="#"
         Icon={() => <CartIcon fillColor="#7e33e0" width="18px" height="18px" />}
-        onClick={handleClick}
+        onClick={handleCartClick}
       ></Button>
       <Button
         mode="option"

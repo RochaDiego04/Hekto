@@ -8,9 +8,7 @@
       "discountPrice": 62,
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tellus porttitor purus, et volutpat sit.",
       "stars": 5,
-      "images": [
-        "/src/assets/products/watches.jpg"
-      ]
+      "images": ["/src/assets/products/watches.jpg"]
     },
     {
       "id": "2",
@@ -34,9 +32,7 @@
       "discountPrice": 89,
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tellus porttitor purus, et volutpat sit.",
       "stars": 3.5,
-      "images": [
-        "/src/assets/products/laptop.jpg"
-      ]
+      "images": ["/src/assets/products/laptop.jpg"]
     },
     {
       "id": "4",
@@ -46,9 +42,7 @@
       "discountPrice": 35,
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tellus porttitor purus, et volutpat sit.",
       "stars": 3.7,
-      "images": [
-        "/src/assets/products/blackWatches.jpg"
-      ]
+      "images": ["/src/assets/products/blackWatches.jpg"]
     },
     {
       "id": "5",
@@ -58,9 +52,7 @@
       "discountPrice": 35,
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tellus porttitor purus, et volutpat sit.",
       "stars": 4.8,
-      "images": [
-        "/src/assets/products/blackWatches.jpg"
-      ]
+      "images": ["/src/assets/products/blackWatches.jpg"]
     },
     {
       "id": "6",
@@ -70,9 +62,7 @@
       "discountPrice": 35,
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tellus porttitor purus, et volutpat sit.",
       "stars": 4,
-      "images": [
-        "/src/assets/products/blackWatches.jpg"
-      ]
+      "images": ["/src/assets/products/blackWatches.jpg"]
     },
     {
       "id": "7",
@@ -82,9 +72,7 @@
       "discountPrice": 35,
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tellus porttitor purus, et volutpat sit.",
       "stars": 3,
-      "images": [
-        "/src/assets/products/blackWatches.jpg"
-      ]
+      "images": ["/src/assets/products/blackWatches.jpg"]
     }
   ],
   "discountCards": [
@@ -109,46 +97,34 @@
           "content": "Material expose like metals"
         }
       ],
-      "productImage": [
-        "/src/assets/discountCards/headphones.png"
-      ]
+      "productImage": ["/src/assets/discountCards/headphones.png"]
     }
   ],
   "productCategories": [
     {
       "id": "1001",
       "categoryName": "Perfume",
-      "categoryImage": [
-        "/src/assets/categories/perfume.jpg"
-      ]
+      "categoryImage": ["/src/assets/categories/perfume.jpg"]
     },
     {
       "id": "1002",
       "categoryName": "Present Box",
-      "categoryImage": [
-        "/src/assets/categories/present-box.jpg"
-      ]
+      "categoryImage": ["/src/assets/categories/present-box.jpg"]
     },
     {
       "id": "1003",
       "categoryName": "Bracelet",
-      "categoryImage": [
-        "/src/assets/categories/bracelet.jpg"
-      ]
+      "categoryImage": ["/src/assets/categories/bracelet.jpg"]
     },
     {
       "id": "1004",
       "categoryName": "Ring",
-      "categoryImage": [
-        "/src/assets/categories/ring.jpg"
-      ]
+      "categoryImage": ["/src/assets/categories/ring.jpg"]
     },
     {
       "id": "1005",
       "categoryName": "Jewellry",
-      "categoryImage": [
-        "/src/assets/categories/perfume.jpg"
-      ]
+      "categoryImage": ["/src/assets/categories/perfume.jpg"]
     }
   ],
   "latestBlogs": [
@@ -158,9 +134,7 @@
       "user": "Jon Doe",
       "date": "2023-01-01T00:00:00Z",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec hendrerit hendrerit ex.",
-      "images": [
-        "/src/assets/latestBlogs/1.jpg"
-      ]
+      "images": ["/src/assets/latestBlogs/1.jpg"]
     },
     {
       "id": "2002",
@@ -168,9 +142,7 @@
       "user": "Jon Doe",
       "date": "2023-01-01T00:00:00Z",
       "description": "Nullam nec fringilla erat, ac dapibus nunc. Integer semper ipsum in fermentum aliquam.",
-      "images": [
-        "/src/assets/latestBlogs/2.jpg"
-      ]
+      "images": ["/src/assets/latestBlogs/2.jpg"]
     },
     {
       "id": "2003",
@@ -178,47 +150,8 @@
       "user": "Jon Doe",
       "date": "2023-01-01T00:00:00Z",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec hendrerit hendrerit ex.",
-      "images": [
-        "/src/assets/latestBlogs/3.jpg"
-      ]
+      "images": ["/src/assets/latestBlogs/3.jpg"]
     }
   ],
-  "submitCart": [
-    {
-      "id": "1729012858877-7420",
-      "items": [
-        {
-          "id": "2",
-          "title": "Headphones",
-          "code": "Y523201",
-          "price": 99,
-          "discountPrice": 90,
-          "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tellus porttitor purus, et volutpat sit.",
-          "stars": 4.2,
-          "images": [
-            "/src/assets/products/headphones.jpg",
-            "/src/assets/products/headphones1.jpg",
-            "/src/assets/products/headphones2.jpg"
-          ],
-          "quantity": 2
-        },
-        {
-          "id": "3",
-          "title": "Laptop",
-          "code": "Y523201",
-          "price": 99,
-          "discountPrice": 89,
-          "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tellus porttitor purus, et volutpat sit.",
-          "stars": 3.5,
-          "images": [
-            "/src/assets/products/laptop.jpg"
-          ],
-          "quantity": 2
-        }
-      ],
-      "subtotal": 396,
-      "shipping": 0,
-      "total": 396
-    }
-  ]
+  "submitCart": []
 }

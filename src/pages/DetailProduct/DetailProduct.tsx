@@ -8,6 +8,8 @@ import { formatter } from "../../util/formatPrice";
 import Button from "../../components/Button/Button";
 import HeartIcon from "../../assets/HeartIcon";
 import StarRating from "../../components/StarRating";
+import { useAppDispatch } from "../../store/hooks";
+import { addItemToCart } from "../../store/cart-slice";
 
 export default function DetailProduct() {
   const { productId } = useParams();
@@ -23,6 +25,14 @@ export default function DetailProduct() {
     queryKey: ["products", { searchId: productId }],
     queryFn: ({ signal }) => fetchProducts({ signal, productId }),
   });
+
+  const dispatch = useAppDispatch();
+
+  function handleCartClick() {
+    if (productData) {
+      dispatch(addItemToCart(productData));
+    }
+  }
 
   return (
     <section className="flex gap-5 md:gap-36 p-maxContainer md:p-24">
@@ -47,7 +57,12 @@ export default function DetailProduct() {
             </p>
             <p className=" text-grey3 mb-16">{productData.description}</p>
             <div className="flex items-center gap-8">
-              <Button className="py-3" mode="filled" href="#">
+              <Button
+                className="py-3"
+                mode="filled"
+                href="#"
+                onClick={handleCartClick}
+              >
                 Add To Cart
               </Button>
               <Button
