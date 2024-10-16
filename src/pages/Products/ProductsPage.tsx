@@ -1,3 +1,5 @@
+import Checkbox from "../../components/Checkbox/Checkbox";
+
 export default function ProductsPage() {
-  return <>products component work</>;
+  return <Checkbox mode="primary" />;
 }
