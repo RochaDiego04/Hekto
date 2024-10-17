@@ -21,7 +21,7 @@ export default function SelectDropdown({
       <div
         tabIndex={0}
         onClick={() => setOpen(!open)}
-        className="w-full flex items-center justify-between py-2 px-3 border-2 border-grey2 rounded-lg cursor-pointer focus:shadow-[0px_0px_0px_1px_rgb(182,207,255,0.25)]"
+        className="w-full flex items-center justify-between gap-2 py-2 px-3 border-2 border-grey2 rounded-lg cursor-pointer focus:shadow-[0px_0px_0px_1px_rgb(182,207,255,0.25)]"
       >
         <p className={`${value ? "text-black" : "text-grey3"} capitalize`}>
           {value ? value : placeholder}
