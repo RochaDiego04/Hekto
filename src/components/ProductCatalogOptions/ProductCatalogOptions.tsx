@@ -12,7 +12,7 @@ export default function ProductCatalogOptions({
   onSetProductsLayout,
 }: ProductCatalogOptionsProps) {
   return (
-    <div>
+    <div className="flex justify-end gap-16 mb-8">
       <SelectorPagination></SelectorPagination>
       <SelectorSortProducts></SelectorSortProducts>
       <ViewProductsToggle
