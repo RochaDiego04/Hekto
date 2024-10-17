@@ -1,8 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
-import { useSelector } from "react-redux";
+import { useAppSelector } from "../store/hooks";
 
 const useProducts = () => {
-  const filters = useSelector((state) => state.filters);
+  const filters = useAppSelector((state) => state.filter);
 
   const queryInfo = useQuery(["products", filters], () =>
     fetchProducts({

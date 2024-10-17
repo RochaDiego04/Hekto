@@ -8,7 +8,7 @@ interface FilterState {
 }
 
 const initialState: FilterState = {
-  priceRange: [],
+  priceRange: [[0, 1000]],
   stars: [],
   categories: [],
   brands: [],
@@ -24,11 +24,11 @@ const filterSlice = createSlice({
     setStars(state, action: PayloadAction<Array<number>>) {
       state.stars = action.payload;
     },
-    setCategories(state, action: PayloadAction<Array<string>>) {
-      state.categories = action.payload;
+    setCategories(state, action: PayloadAction<string[]>) {
+      state.categories = action.payload; // Directly set the new categories
     },
-    setBrands(state, action: PayloadAction<Array<string>>) {
-      state.brands = action.payload;
+    setBrands(state, action: PayloadAction<string[]>) {
+      state.brands = action.payload; // Directly set the new brands
     },
     resetFilters(state) {
       return initialState;

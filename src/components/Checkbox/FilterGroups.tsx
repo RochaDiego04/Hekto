@@ -4,6 +4,7 @@ interface FilterGroup {
   title: string;
   labels: Array<string | JSX.Element>;
   mode: "primary" | "secondary" | "info";
+  filterType: "brands" | "categories" | "stars" | "price";
 }
 
 type FilterGroupsProps = {
@@ -15,12 +16,13 @@ export const filterGroups: FilterGroupsProps = {
     title: "Product Brand",
     labels: ["casio", "apple", "sony", "nike", "vke", "glossiness"],
     mode: "info",
+    filterType: "brands",
   },
-  discount: {
-    title: "Discount Offer",
-    labels: ["20% cashback", "5% cashback offer", "25% discount offer"],
-    mode: "primary",
-  },
+  // discount: {
+  //   title: "Discount Offer",
+  //   labels: ["20% cashback", "5% cashback offer", "25% discount offer"],
+  //   mode: "primary"
+  // },
   rating: {
     title: "Rating",
     labels: [
@@ -31,6 +33,7 @@ export const filterGroups: FilterGroupsProps = {
       <StarRating rating={1} className="inline-block" />,
     ],
     mode: "secondary",
+    filterType: "stars",
   },
   categories: {
     title: "Categories",
@@ -44,10 +47,12 @@ export const filterGroups: FilterGroupsProps = {
       "perfume",
     ],
     mode: "primary",
+    filterType: "categories",
   },
   price: {
     title: "Price",
     labels: ["$0 - $150", "$150 - $350", "$350 - $500", "$550 - $800", "$800+"],
     mode: "primary",
+    filterType: "price",
   },
 };

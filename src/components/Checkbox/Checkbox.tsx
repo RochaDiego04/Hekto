@@ -1,19 +1,83 @@
 import { ReactNode, useState } from "react";
 import "./Checkbox.css";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import {
+  setBrands,
+  setCategories,
+  setPriceRange,
+  setStars,
+} from "../../store/filter-slice";
 
 type CheckboxProps = {
   label?: string;
   mode: "primary" | "secondary" | "info";
+  filterType: "brands" | "categories" | "stars" | "price";
   children?: ReactNode;
 };
 
-export default function Checkbox({ label, mode, children }: CheckboxProps) {
+// Checkbox filter functions are dispatched based on the filterType and their respective label.
+// When there is not a label...
+
+export default function Checkbox({
+  label,
+  mode,
+  filterType,
+  children,
+}: CheckboxProps) {
+  const dispatch = useAppDispatch();
   const [isChecked, setIsChecked] = useState(false);
+  const selectedBrands = useAppSelector((state) => state.filter.brands);
+  const selectedCategories = useAppSelector((state) => state.filter.categories);
+  const selectedPriceRanges = useAppSelector(
+    (state) => state.filter.priceRange
+  );
+
+  const handleCheckboxChange = () => {
+    const nextChecked = !isChecked; // This is the next state
+    setIsChecked(nextChecked);
+
+    // Dispatch based on the nextChecked value
+    if (filterType === "brands" && label) {
+      const updatedBrands = nextChecked
+        ? [...selectedBrands, label] // add label
+        : selectedBrands.filter((brand) => brand !== label); // delete label
+
+      dispatch(setBrands(updatedBrands));
+    } else if (filterType === "categories" && label) {
+      const updatedCategories = nextChecked
+        ? [...selectedCategories, label] // add label
+        : selectedCategories.filter((category) => category !== label); // delete label
+
+      dispatch(setCategories(updatedCategories));
+    } else if (filterType === "stars" && label) {
+      dispatch(setStars(nextChecked ? [+label] : []));
+    } else if (filterType === "price" && label) {
+      const priceRange = label.includes("-")
+        ? (label
+            .split(" - ")
+            .map((price) => parseInt(price.replace(/\D/g, ""))) as [
+            number,
+            number
+          ])
+        : ([parseInt(label.replace(/\D/g, "")), Number.MAX_SAFE_INTEGER] as [
+            number,
+            number
+          ]);
+
+      const updatedPriceRanges = nextChecked
+        ? [...selectedPriceRanges, priceRange] // Add new price range
+        : selectedPriceRanges.filter(
+            (range) => range[0] !== priceRange[0] || range[1] !== priceRange[1]
+          ); // Remove the price range if unchecked
+
+      dispatch(setPriceRange(updatedPriceRanges));
+    }
+  };
 
   return (
     <div className={`checkbox__wrapper ${mode}`}>
       <label className="flex items-center">
-        <input type="checkbox" onChange={() => setIsChecked(!isChecked)} />
+        <input type="checkbox" onChange={handleCheckboxChange} />
         {/* {children ? <span>{children}</span> : <span>{label}</span>} */}
         <svg
           className={`checkbox checkbox--${mode} ${
