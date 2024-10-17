@@ -12,7 +12,7 @@ export default function Checkbox({ label, mode, children }: CheckboxProps) {
 
   return (
     <div className={`checkbox__wrapper ${mode}`}>
-      <label>
+      <label className="flex items-center">
         <input type="checkbox" onChange={() => setIsChecked(!isChecked)} />
         {/* {children ? <span>{children}</span> : <span>{label}</span>} */}
         <svg
@@ -30,7 +30,11 @@ export default function Checkbox({ label, mode, children }: CheckboxProps) {
           />
         </svg>
         {/* show text or icons */}
-        {children ? <span>{children}</span> : <span>{label}</span>}
+        {children ? (
+          <span>{children}</span>
+        ) : (
+          <span className=" capitalize">{label}</span>
+        )}
       </label>
     </div>
   );
