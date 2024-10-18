@@ -1,4 +1,4 @@
-import { ReactNode, useState } from "react";
+import { ReactNode, useState, useEffect } from "react";
 import "./Checkbox.css";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import {
@@ -15,9 +15,6 @@ type CheckboxProps = {
   children?: ReactNode;
 };
 
-// Checkbox filter functions are dispatched based on the filterType and their respective label.
-// When there is not a label and there is a children element (rating stars case), extract the "rating" prop value
-
 export default function Checkbox({
   label,
   mode,
@@ -26,6 +23,7 @@ export default function Checkbox({
 }: CheckboxProps) {
   const dispatch = useAppDispatch();
   const [isChecked, setIsChecked] = useState(false);
+
   const selectedBrands = useAppSelector((state) => state.filter.brands);
   const selectedCategories = useAppSelector((state) => state.filter.categories);
   const selectedPriceRanges = useAppSelector(
@@ -33,11 +31,49 @@ export default function Checkbox({
   );
   const selectedStars = useAppSelector((state) => state.filter.stars);
 
+  // Sync isChecked with the actual selected values in the Redux store
+  useEffect(() => {
+    if (filterType === "brands" && label) {
+      setIsChecked(selectedBrands.includes(label));
+    } else if (filterType === "categories" && label) {
+      setIsChecked(selectedCategories.includes(label));
+    } else if (filterType === "stars" && children) {
+      const rating = (children as React.ReactElement).props.rating;
+      setIsChecked(selectedStars.includes(rating));
+    } else if (filterType === "price" && label) {
+      const priceRange = label.includes("-")
+        ? (label
+            .split(" - ")
+            .map((price) => parseInt(price.replace(/\D/g, ""))) as [
+            number,
+            number
+          ])
+        : ([parseInt(label.replace(/\D/g, "")), Number.MAX_SAFE_INTEGER] as [
+            number,
+            number
+          ]);
+
+      setIsChecked(
+        selectedPriceRanges.some(
+          (range) => range[0] === priceRange[0] && range[1] === priceRange[1]
+        )
+      );
+    }
+  }, [
+    selectedBrands,
+    selectedCategories,
+    selectedStars,
+    selectedPriceRanges,
+    filterType,
+    label,
+    children,
+  ]);
+
   const handleCheckboxChange = () => {
-    const nextChecked = !isChecked; // This is the next state
+    const nextChecked = !isChecked; // Toggle the state
     setIsChecked(nextChecked);
 
-    // Dispatch based on the nextChecked value
+    // Dispatch based on the state value previous to be clicked
     if (filterType === "brands" && label) {
       const updatedBrands = nextChecked
         ? [...selectedBrands, label] // add label
@@ -51,9 +87,8 @@ export default function Checkbox({
 
       dispatch(setCategories(updatedCategories));
     } else if (filterType === "stars" && children) {
-      // Extract rating number from StarRating JSX element (assuming children is a ReactElement with props.rating)
+      // Extracting rating number from StarRating JSX element
       const rating = (children as React.ReactElement).props.rating;
-
       const updatedStars = nextChecked
         ? [...selectedStars, rating] // Add rating to the selected stars
         : selectedStars.filter((star) => star !== rating); // Remove rating if unchecked
@@ -85,8 +120,11 @@ export default function Checkbox({
   return (
     <div className={`checkbox__wrapper ${mode}`}>
       <label className="flex items-center">
-        <input type="checkbox" onChange={handleCheckboxChange} />
-        {/* {children ? <span>{children}</span> : <span>{label}</span>} */}
+        <input
+          type="checkbox"
+          checked={isChecked}
+          onChange={handleCheckboxChange}
+        />
         <svg
           className={`checkbox checkbox--${mode} ${
             isChecked ? `checkbox__${mode}--active` : ""
