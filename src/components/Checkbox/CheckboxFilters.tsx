@@ -10,6 +10,7 @@ export default function CheckboxFilters() {
           title={group.title}
           labels={group.labels}
           mode={group.mode}
+          filterType={group.filterType}
         />
       ))}
     </div>

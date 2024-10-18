@@ -77,12 +77,15 @@ export async function fetchProductCategories({
 }
 
 // Fetch Discount Cards (related to products)
-type fetchProductProps = {
-  signal?: AbortSignal;
-  productId?: string;
-};
+type fetchProductProps = fetchOptionsProps;
 
-export async function fetchProducts({ signal, productId }: fetchProductProps) {
+export async function fetchProducts({
+  signal,
+  start,
+  end,
+  limit,
+  productId,
+}: fetchProductProps) {
   const url = buildUrl(`${BASE_URL}/featuredProducts`, {
     productId,
   });

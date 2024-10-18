@@ -4,12 +4,14 @@ type CheckboxGroupProps = {
   title: string;
   labels: Array<string | JSX.Element>;
   mode: "primary" | "secondary" | "info";
+  filterType: "brands" | "categories" | "stars" | "price";
 };
 
 export default function CheckboxGroup({
   title,
   labels,
   mode,
+  filterType,
 }: CheckboxGroupProps) {
   return (
     <div>
@@ -22,6 +24,7 @@ export default function CheckboxGroup({
             key={index}
             label={typeof label === "string" ? label : undefined}
             mode={mode}
+            filterType={filterType}
           >
             {typeof label !== "string" && label}
           </Checkbox>

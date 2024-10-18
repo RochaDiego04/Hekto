@@ -1,9 +1,11 @@
 {
-  "featuredProducts": [
+  "products": [
     {
       "id": "1",
       "title": "Watches",
       "code": "Y523201",
+      "brand": "Apple",
+      "category": "Watches",
       "price": 42,
       "discountPrice": 62,
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tellus porttitor purus, et volutpat sit.",
@@ -14,6 +16,8 @@
       "id": "2",
       "title": "Headphones",
       "code": "Y523201",
+      "brand": "Apple",
+      "category": "Headphones",
       "price": 99,
       "discountPrice": 90,
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tellus porttitor purus, et volutpat sit.",
@@ -28,6 +32,8 @@
       "id": "3",
       "title": "Laptop",
       "code": "Y523201",
+      "brand": "Apple",
+      "category": "Laptop",
       "price": 99,
       "discountPrice": 89,
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tellus porttitor purus, et volutpat sit.",
@@ -38,6 +44,134 @@
       "id": "4",
       "title": "Black Watches",
       "code": "Y523201",
+      "brand": "Casio",
+      "category": "Watches",
+      "price": 55,
+      "discountPrice": 35,
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tellus porttitor purus, et volutpat sit.",
+      "stars": 3.7,
+      "images": ["/src/assets/products/blackWatches.jpg"]
+    },
+    {
+      "id": "5",
+      "title": "Game console",
+      "code": "Y523201",
+      "brand": "Sony",
+      "category": "Game Console",
+      "price": 89,
+      "discountPrice": 76,
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tellus porttitor purus, et volutpat sit.",
+      "stars": 4,
+      "images": ["/src/assets/products/gameConsole.jpg"]
+    },
+    {
+      "id": "6",
+      "title": "Shoes",
+      "code": "Y523201",
+      "brand": "Nike",
+      "category": "Clothe",
+      "price": 75,
+      "discountPrice": 57,
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tellus porttitor purus, et volutpat sit.",
+      "stars": 4,
+      "images": ["/src/assets/products/shoes.jpg"]
+    },
+    {
+      "id": "7",
+      "title": "Perfume",
+      "code": "Y523201",
+      "brand": "Vke",
+      "category": "Perfume",
+      "price": 75,
+      "discountPrice": 57,
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tellus porttitor purus, et volutpat sit.",
+      "stars": 4.5,
+      "images": ["/src/assets/products/perfume.jpg"]
+    },
+    {
+      "id": "8",
+      "title": "Present box",
+      "code": "Y523201",
+      "brand": "Glossiness",
+      "category": "Jewelry",
+      "price": 29,
+      "discountPrice": 12,
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tellus porttitor purus, et volutpat sit.",
+      "stars": 4.5,
+      "images": ["/src/assets/products/presentBox.jpg"]
+    },
+    {
+      "id": "9",
+      "title": "Bracelet",
+      "code": "Y523201",
+      "brand": "Glossiness",
+      "category": "Jewelry",
+      "price": 76,
+      "discountPrice": 67,
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tellus porttitor purus, et volutpat sit.",
+      "stars": 1,
+      "images": ["/src/assets/products/bracelet.jpg"]
+    },
+    {
+      "id": "10",
+      "title": "Ring",
+      "code": "Y523201",
+      "brand": "Glossiness",
+      "category": "Jewelry",
+      "price": 65,
+      "discountPrice": 57,
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tellus porttitor purus, et volutpat sit.",
+      "stars": 5,
+      "images": ["/src/assets/products/bracelet.jpg"]
+    }
+  ],
+  "featuredProducts": [
+    {
+      "id": "1",
+      "title": "Watches",
+      "code": "Y523201",
+      "brand": "Apple",
+      "category": "Watches",
+      "price": 42,
+      "discountPrice": 62,
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tellus porttitor purus, et volutpat sit.",
+      "stars": 5,
+      "images": ["/src/assets/products/watches.jpg"]
+    },
+    {
+      "id": "2",
+      "title": "Headphones",
+      "code": "Y523201",
+      "brand": "Apple",
+      "category": "Headphones",
+      "price": 99,
+      "discountPrice": 90,
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tellus porttitor purus, et volutpat sit.",
+      "stars": 4.2,
+      "images": [
+        "/src/assets/products/headphones.jpg",
+        "/src/assets/products/headphones1.jpg",
+        "/src/assets/products/headphones2.jpg"
+      ]
+    },
+    {
+      "id": "3",
+      "title": "Laptop",
+      "code": "Y523201",
+      "brand": "Apple",
+      "category": "Laptop",
+      "price": 99,
+      "discountPrice": 89,
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tellus porttitor purus, et volutpat sit.",
+      "stars": 3.5,
+      "images": ["/src/assets/products/laptop.jpg"]
+    },
+    {
+      "id": "4",
+      "title": "Black Watches",
+      "code": "Y523201",
+      "brand": "Casio",
+      "category": "Watches",
       "price": 55,
       "discountPrice": 35,
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tellus porttitor purus, et volutpat sit.",
@@ -48,30 +182,36 @@
       "id": "5",
       "title": "Black Watches",
       "code": "Y523201",
+      "brand": "Casio",
+      "category": "Watches",
       "price": 55,
       "discountPrice": 35,
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tellus porttitor purus, et volutpat sit.",
-      "stars": 4.8,
+      "stars": 3.7,
       "images": ["/src/assets/products/blackWatches.jpg"]
     },
     {
       "id": "6",
       "title": "Black Watches",
       "code": "Y523201",
+      "brand": "Casio",
+      "category": "Watches",
       "price": 55,
       "discountPrice": 35,
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tellus porttitor purus, et volutpat sit.",
-      "stars": 4,
+      "stars": 3.7,
       "images": ["/src/assets/products/blackWatches.jpg"]
     },
     {
       "id": "7",
       "title": "Black Watches",
       "code": "Y523201",
+      "brand": "Casio",
+      "category": "Watches",
       "price": 55,
       "discountPrice": 35,
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tellus porttitor purus, et volutpat sit.",
-      "stars": 3,
+      "stars": 3.7,
       "images": ["/src/assets/products/blackWatches.jpg"]
     }
   ],
@@ -123,7 +263,7 @@
     },
     {
       "id": "1005",
-      "categoryName": "Jewellry",
+      "categoryName": "Jewelry",
       "categoryImage": ["/src/assets/categories/perfume.jpg"]
     }
   ],

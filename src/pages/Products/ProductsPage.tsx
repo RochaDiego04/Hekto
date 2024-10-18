@@ -1,6 +1,7 @@
 import { useCallback, useState } from "react";
 import CheckboxFilters from "../../components/Checkbox/CheckboxFilters";
 import ProductCatalogOptions from "../../components/ProductCatalogOptions/ProductCatalogOptions";
+import MainProductCatalog from "../../components/MainProductCatalog";
 
 export default function ProductsPage() {
   const [productsLayout, setProductsLayout] = useState("flowLayout");
@@ -18,6 +19,7 @@ export default function ProductsPage() {
         onSetProductsLayout={handleSetProductsLayout}
       ></ProductCatalogOptions>
       <CheckboxFilters></CheckboxFilters>
+      <MainProductCatalog></MainProductCatalog>
       {/* product catalog component with the productsLayout prop */}
     </section>
   );
