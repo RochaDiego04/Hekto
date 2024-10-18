@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface FilterState {
   priceRange: [number, number][]; // [min, max]
@@ -8,7 +8,7 @@ interface FilterState {
 }
 
 const initialState: FilterState = {
-  priceRange: [[0, 1000]],
+  priceRange: [],
   stars: [],
   categories: [],
   brands: [],
