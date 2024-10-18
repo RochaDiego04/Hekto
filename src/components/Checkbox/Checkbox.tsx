@@ -16,7 +16,7 @@ type CheckboxProps = {
 };
 
 // Checkbox filter functions are dispatched based on the filterType and their respective label.
-// When there is not a label...
+// When there is not a label and there is a children element (rating stars case), extract the "rating" prop value
 
 export default function Checkbox({
   label,
@@ -31,6 +31,7 @@ export default function Checkbox({
   const selectedPriceRanges = useAppSelector(
     (state) => state.filter.priceRange
   );
+  const selectedStars = useAppSelector((state) => state.filter.stars);
 
   const handleCheckboxChange = () => {
     const nextChecked = !isChecked; // This is the next state
@@ -49,8 +50,15 @@ export default function Checkbox({
         : selectedCategories.filter((category) => category !== label); // delete label
 
       dispatch(setCategories(updatedCategories));
-    } else if (filterType === "stars" && label) {
-      dispatch(setStars(nextChecked ? [+label] : []));
+    } else if (filterType === "stars" && children) {
+      // Extract rating number from StarRating JSX element (assuming children is a ReactElement with props.rating)
+      const rating = (children as React.ReactElement).props.rating;
+
+      const updatedStars = nextChecked
+        ? [...selectedStars, rating] // Add rating to the selected stars
+        : selectedStars.filter((star) => star !== rating); // Remove rating if unchecked
+
+      dispatch(setStars(updatedStars));
     } else if (filterType === "price" && label) {
       const priceRange = label.includes("-")
         ? (label
