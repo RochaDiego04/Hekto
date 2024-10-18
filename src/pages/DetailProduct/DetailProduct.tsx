@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import { fetchProducts } from "../../util/http";
+import fetchProducts from "../../util/fetchProducts";
 import { ProductInfo } from "../../interfaces/ProductInfo";
 import FetchError from "../../classes/FetchError";
 import ImageShowCase from "../../components/ImageShowCase";

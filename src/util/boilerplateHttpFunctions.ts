@@ -6,20 +6,39 @@ export type fetchOptionsProps = {
   start?: number;
   end?: number;
   limit?: number;
+  categories?: string[];
+  priceRange?: [number, number];
+  stars?: number[];
+  brands?: string[];
+  sortPriceOrder?: "lowToHigh" | "highToLow";
 };
-
 export function buildUrl(
   baseUrl: string,
-  { productId, start, end, limit }: fetchOptionsProps
+  {
+    productId,
+    start,
+    end,
+    limit,
+    categories,
+    brands,
+    priceRange,
+    stars,
+    sortPriceOrder,
+  }: fetchOptionsProps & {
+    categories?: string[];
+    brands?: string[];
+    priceRange?: [number, number];
+    stars?: number[];
+    sortPriceOrder?: "lowToHigh" | "highToLow";
+  }
 ): string {
   let url = baseUrl;
   const params = new URLSearchParams();
 
   if (productId !== undefined) {
-    // If productId exists, ignore other filters and build the URL accordingly
     url += `/${productId}`;
   } else {
-    // Add filters as query parameters if they exist
+    // Pagination
     if (start !== undefined) {
       params.append("_start", `${start}`);
     }
@@ -28,6 +47,39 @@ export function buildUrl(
     }
     if (limit !== undefined) {
       params.append("_limit", `${limit}`);
+    }
+
+    // Categories filter
+    if (categories?.length) {
+      categories.forEach((category) => {
+        params.append("category", category);
+      });
+    }
+
+    // Brands filter
+    if (brands?.length) {
+      brands.forEach((brand) => {
+        params.append("brand", brand);
+      });
+    }
+
+    // Price range filter
+    if (priceRange?.length === 2) {
+      params.append("price_gte", `${priceRange[0]}`);
+      params.append("price_lte", `${priceRange[1]}`);
+    }
+
+    // Stars filter
+    if (stars?.length) {
+      stars.forEach((star) => {
+        params.append("stars", `${star}`);
+      });
+    }
+
+    // Sorting by price
+    if (sortPriceOrder) {
+      params.append("_sort", "price");
+      params.append("_order", sortPriceOrder === "lowToHigh" ? "asc" : "desc");
     }
 
     if (params.toString()) {
