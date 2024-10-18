@@ -4,7 +4,7 @@ import {
   fetchOptionsProps,
 } from "./boilerplateHttpFunctions";
 
-const BASE_URL = import.meta.env.VITE_API_URL;
+export const BASE_URL = import.meta.env.VITE_API_URL;
 
 // Fetch Featured Products
 type fetchFeaturedProductProps = fetchOptionsProps;
@@ -74,29 +74,6 @@ export async function fetchProductCategories({
   }
 
   return featuredProducts;
-}
-
-// Fetch Discount Cards (related to products)
-type fetchProductProps = fetchOptionsProps;
-
-export async function fetchProducts({
-  signal,
-  start,
-  end,
-  limit,
-  productId,
-}: fetchProductProps) {
-  const url = buildUrl(`${BASE_URL}/featuredProducts`, {
-    productId,
-  });
-  const products = await fetchData(url, signal);
-
-  // If fetching by productId, return the first (and only) product
-  if (productId && Array.isArray(products)) {
-    return products[0];
-  }
-
-  return products;
 }
 
 // Fetch Latest Blogs
