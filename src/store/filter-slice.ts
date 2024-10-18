@@ -5,13 +5,17 @@ interface FilterState {
   stars: number[];
   categories: string[];
   brands: string[];
+  pagination: [number, number]; // [min, max]
+  sortPriceOrder: "lowToHigh" | "highToLow";
 }
 
 const initialState: FilterState = {
-  priceRange: [],
+  priceRange: [[0, 150]],
   stars: [],
   categories: [],
   brands: [],
+  pagination: [1, 5],
+  sortPriceOrder: "lowToHigh",
 };
 
 const filterSlice = createSlice({
@@ -25,12 +29,19 @@ const filterSlice = createSlice({
       state.stars = action.payload;
     },
     setCategories(state, action: PayloadAction<string[]>) {
-      state.categories = action.payload; // Directly set the new categories
+      state.categories = action.payload;
     },
     setBrands(state, action: PayloadAction<string[]>) {
-      state.brands = action.payload; // Directly set the new brands
+      state.brands = action.payload;
+    },
+    setPagination(state, action: PayloadAction<[number, number]>) {
+      state.pagination = action.payload;
+    },
+    setSortPriceOrder(state, action: PayloadAction<"lowToHigh" | "highToLow">) {
+      state.sortPriceOrder = action.payload;
     },
     resetFilters(state) {
+      //TODO
       return initialState;
     },
   },
@@ -41,6 +52,8 @@ export const {
   setStars,
   setCategories,
   setBrands,
+  setPagination,
+  setSortPriceOrder,
   resetFilters,
 } = filterSlice.actions;
 
