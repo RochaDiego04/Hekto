@@ -2,56 +2,51 @@ import { useState } from "react";
 import { ArrowBigLeft, ArrowBigRight, Diamond } from "lucide-react";
 
 import "./CardSlider.css";
-
-const cardsInfo = ["card 1", "card 2", "card 3"];
+import { useQuery } from "@tanstack/react-query";
+import { fetchHeaderCard } from "../../util/http";
+import { HeaderCard as HeaderCardType } from "../../interfaces/HeaderCard";
+import FetchError from "../../classes/FetchError";
+import HeaderCard from "../HeaderCard/HeaderCard";
 
 export default function CardSlider() {
+  const {
+    data: headerCardsData,
+    isLoading,
+    isError,
+    error,
+  } = useQuery<HeaderCardType[], FetchError>(
+    ["headerCardsData"],
+    ({ signal }) => fetchHeaderCard({ signal })
+  );
+
   const [cardIndex, setCardIndex] = useState(0);
 
-  // function showNextCard() {
-  //   setCardIndex((index) => {
-  //     if (index === cardsInfo.length - 1) return 0;
-  //     return index + 1;
-  //   });
-  // }
-  // function showPrevCard() {
-  //   setCardIndex((index) => {
-  //     if (index === 0) return cardsInfo.length - 1;
-  //     return index - 1;
-  //   });
-  // }
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (isError || !headerCardsData || headerCardsData.length === 0) {
+    return <div>Error: {error?.message || "No header cards available"}</div>;
+  }
+
+  headerCardsData ? console.log(headerCardsData) : null;
 
   return (
-    <div className=" w-full bg-bgLightGrey h-[60vh] relative">
-      <div className=" w-full h-full flex overflow-hidden">
-        {cardsInfo.map((info) => {
-          return (
-            <div
-              className="card-slider--card w-full min-w-full h-full"
-              style={{ translate: `${-100 * cardIndex}%` }}
-            >
-              {info}
-            </div>
-          );
-        })}
+    <div className="w-full bg-bgLightGrey h-[60vh] relative">
+      <div className="w-full h-full flex overflow-hidden">
+        {headerCardsData.map((info) => (
+          <div
+            key={info.id}
+            className="card-slider--card w-full min-w-full h-full"
+            style={{ translate: `${-100 * cardIndex}%` }}
+          >
+            <HeaderCard cardInfo={info} />
+          </div>
+        ))}
       </div>
-      {/* <button
-        className="card-slider--btn card-slider--btn--left left-0"
-        onClick={showPrevCard}
-        aria-label="View Previous Card"
-      >
-        <ArrowBigLeft className="stroke-primary" />
-      </button>
-      <button
-        className="card-slider--btn card-slider--btn--right right-0"
-        onClick={showNextCard}
-        aria-label="View Next Card"
-      >
-        <ArrowBigRight className="stroke-primary" />
-      </button> */}
 
       <div className="absolute bottom-2 mb-5 left-[50%] translate-x-[-50%] flex gap-3">
-        {cardsInfo.map((_, index) => (
+        {headerCardsData.map((_, index) => (
           <button
             key={index}
             className="card-slider--dot-btn"

@@ -215,6 +215,26 @@
       "images": ["/src/assets/products/blackWatches.jpg"]
     }
   ],
+  "headerCards": [
+    {
+      "id": 1,
+      "slogan": "Best Headphones For Your Life....",
+      "title": "New Trendy Collection Headphones",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Magna in est adipiscing in phasellus non in justo.",
+      "sideImage": "/src/assets/headerSlider/lamp.png",
+      "productImage": "/src/assets/headerSlider/headphones.png",
+      "discount": "50%"
+    },
+    {
+      "id": 2,
+      "slogan": "Best Headphones For Your Life....",
+      "title": "New Trendy Collection Headphones",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Magna in est adipiscing in phasellus non in justo.",
+      "sideImage": "/src/assets/headerSlider/lamp.png",
+      "productImage": "/src/assets/headerSlider/headphones.png",
+      "discount": "50%"
+    }
+  ],
   "discountCards": [
     {
       "id": "2",
