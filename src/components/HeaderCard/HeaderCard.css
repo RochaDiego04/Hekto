@@ -1,0 +1,32 @@
+.headerCard__container {
+  display: grid;
+  grid-template-columns: 2fr 5fr 4fr;
+}
+
+.headerCard__imageComposition {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  justify-content: center;
+  align-items: center;
+}
+.headerCard__imageComposition img,
+.headerCard__imageComposition div {
+  grid-column: 1/2;
+  grid-row: 1 /2;
+}
+
+.headerCard__productImage {
+  position: relative;
+}
+
+.headerCard__productImage__discount {
+  position: absolute;
+  right: 10%;
+}
+.headerCard__productImage__discountText {
+  position: absolute;
+  top: 3%;
+  right: 13%;
+  z-index: 1;
+}

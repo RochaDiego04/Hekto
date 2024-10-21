@@ -32,6 +32,16 @@ export async function fetchFeaturedProducts({
   return featuredProducts;
 }
 
+export async function fetchHeaderCard({
+  signal,
+  productId,
+}: fetchDiscountCardsProps) {
+  const url = buildUrl(`${BASE_URL}/headerCards`, { productId });
+  const featuredProducts = await fetchData(url, signal);
+
+  return featuredProducts;
+}
+
 // Fetch Discount Cards (related to products)
 type fetchDiscountCardsProps = {
   signal?: AbortSignal;
