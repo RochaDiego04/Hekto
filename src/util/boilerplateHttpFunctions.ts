@@ -26,13 +26,7 @@ export function buildUrl(
     priceRange,
     stars,
     sortPriceOrder,
-  }: fetchOptionsProps & {
-    categories?: string[];
-    brands?: string[];
-    priceRange?: [number, number];
-    stars?: number[];
-    sortPriceOrder?: "lowToHigh" | "highToLow";
-  }
+  }: fetchOptionsProps
 ): string {
   let url = baseUrl;
   const params = new URLSearchParams();
@@ -48,18 +42,12 @@ export function buildUrl(
       params.append("_limit", `${limit}`);
     }
 
-    // Categories filter
     if (categories?.length) {
-      categories.forEach((category) => {
-        params.append("category", category);
-      });
+      params.append("category_like", `(?:${categories.join("|")})`);
     }
 
-    // Brands filter
     if (brands?.length) {
-      brands.forEach((brand) => {
-        params.append("brand", brand);
-      });
+      params.append("brand_like", `(?:${brands.join("|")})`);
     }
 
     // Price range filter
@@ -68,14 +56,10 @@ export function buildUrl(
       params.append("price_lte", `${priceRange[1]}`);
     }
 
-    // Stars filter
     if (stars?.length) {
-      stars.forEach((star) => {
-        params.append("stars", `${star}`);
-      });
+      params.append("stars_like", `(?:${stars.join("|")})`);
     }
 
-    // Sorting by price
     if (sortPriceOrder) {
       params.append("_sort", "price");
       params.append("_order", sortPriceOrder === "lowToHigh" ? "asc" : "desc");
