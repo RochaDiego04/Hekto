@@ -1,6 +1,6 @@
 import {
   buildUrl,
-  fetchData,
+  fetchDataWithTotalCount,
   fetchOptionsProps,
 } from "./boilerplateHttpFunctions";
 import { BASE_URL } from "./http";
@@ -9,6 +9,7 @@ export default async function fetchProducts({
   signal,
   start,
   end,
+  page,
   limit,
   productId,
   categories,
@@ -27,6 +28,7 @@ export default async function fetchProducts({
     productId,
     start,
     end,
+    page,
     limit,
     categories,
     brands,
@@ -36,11 +38,11 @@ export default async function fetchProducts({
   });
   console.log(url);
 
-  const products = await fetchData(url, signal);
+  const { data: products, total } = await fetchDataWithTotalCount(url, signal);
 
   if (productId && Array.isArray(products)) {
-    return products[0];
+    return { products: products[0], total };
   }
 
-  return products;
+  return { products, total };
 }

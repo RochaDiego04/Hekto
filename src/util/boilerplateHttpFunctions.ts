@@ -5,6 +5,7 @@ export type fetchOptionsProps = {
   productId?: number | string;
   start?: number;
   end?: number;
+  page?: number;
   limit?: number;
   categories?: string[];
   priceRange?: [number, number];
@@ -18,6 +19,7 @@ export function buildUrl(
     productId,
     start,
     end,
+    page,
     limit,
     categories,
     brands,
@@ -39,11 +41,8 @@ export function buildUrl(
     url += `/${productId}`;
   } else {
     // Pagination
-    if (start !== undefined) {
-      params.append("_start", `${start}`);
-    }
-    if (end !== undefined) {
-      params.append("_end", `${end}`);
+    if (page !== undefined) {
+      params.append("_page", `${page}`);
     }
     if (limit !== undefined) {
       params.append("_limit", `${limit}`);
@@ -104,6 +103,36 @@ export async function fetchData(url: string, signal?: AbortSignal) {
     }
 
     return await response.json();
+  } catch (error) {
+    throw new FetchError(
+      "Failed to fetch data. Please check your network or try again later.",
+      0,
+      null
+    );
+  }
+}
+
+export async function fetchDataWithTotalCount(
+  url: string,
+  signal?: AbortSignal
+) {
+  try {
+    const response = await fetch(url, { signal });
+
+    if (!response.ok) {
+      const errorInfo = await response.json();
+      throw new FetchError(
+        "An error occurred while fetching data",
+        response.status,
+        errorInfo
+      );
+    }
+
+    console.log(response);
+    const total = response.headers.get("X-Total-Count");
+    const data = await response.json();
+
+    return { data, total: total ? parseInt(total, 10) : 0 };
   } catch (error) {
     throw new FetchError(
       "Failed to fetch data. Please check your network or try again later.",

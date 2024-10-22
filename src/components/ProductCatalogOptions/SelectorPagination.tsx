@@ -1,28 +1,33 @@
 import SelectDropdown from "../Dropdown/SelectDropdown";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { RootState } from "../../store/store";
-import { setPagination } from "../../store/filter-slice";
+import { setItemsPerPage } from "../../store/filter-slice";
 
 export default function SelectorPagination() {
-  const options = ["1 - 5", "1 - 10", "1 - 20"]; // TODO, get the options from backend
+  // Updated options to reflect only items per page
+  const options = ["5", "10", "20"];
   const dispatch = useAppDispatch();
-  const paginationValue = useAppSelector(
-    (state: RootState) => state.filter.pagination
+
+  // Get the current items per page from the state
+  const itemsPerPage = useAppSelector(
+    (state: RootState) => state.filter.itemsPerPage
   );
+
+  // Handle change in selected items per page
   const handlePaginationChange = (newPaginationValue: string) => {
-    const [min, max] = newPaginationValue.split(" - ").map(Number);
-    dispatch(setPagination([min, max]));
+    const items = Number(newPaginationValue);
+    dispatch(setItemsPerPage(items)); // Dispatch only the items per page
   };
 
   return (
     <div className="flex items-center gap-4">
       <p className="text-grey3 inline-block">Per Page</p>
       <SelectDropdown
-        value={`${paginationValue[0]} - ${paginationValue[1]}`}
+        value={`${itemsPerPage}`} // Directly use itemsPerPage
         onChange={handlePaginationChange}
-        placeholder="Select pagination parameter"
+        placeholder="Select items per page"
         options={options}
-      ></SelectDropdown>
+      />
     </div>
   );
 }

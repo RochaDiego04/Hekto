@@ -33,7 +33,7 @@ export default function SelectDropdown({
         />
       </div>
       {open && (
-        <div className=" absolute top-[105%] left-0 w-full max-h-[320px] py-2 border-2 border-grey2 rounded-lg bg-white">
+        <div className="absolute top-[105%] left-0 w-full max-h-[320px] py-2 border-2 border-grey2 rounded-lg bg-white">
           {options.map((option, index) => (
             <div
               key={index}
@@ -45,7 +45,7 @@ export default function SelectDropdown({
                 option === value ? "bg-gray-200" : "bg-white"
               } hover:bg-gray-200 rounded-sm`}
             >
-              <p className=" capitalize text-black">{option}</p>
+              <p className="capitalize text-black">{option}</p>
             </div>
           ))}
         </div>
