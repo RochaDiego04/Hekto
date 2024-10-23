@@ -21,7 +21,7 @@ export default function DetailProduct() {
     isLoading,
     isError,
     error,
-  } = useQuery<ProductInfo, FetchError>({
+  } = useQuery<{ products: ProductInfo; total: number }, FetchError>({
     queryKey: ["products", { searchId: productId }],
     queryFn: ({ signal }) => fetchProducts({ signal, productId }),
   });
@@ -30,7 +30,7 @@ export default function DetailProduct() {
 
   function handleCartClick() {
     if (productData) {
-      dispatch(addItemToCart(productData));
+      dispatch(addItemToCart(productData.products));
     }
   }
 
@@ -38,24 +38,26 @@ export default function DetailProduct() {
     <section className="flex gap-5 md:gap-36 p-maxContainer md:p-24">
       {productData && (
         <>
-          <ImageShowCase images={productData.images} />
+          <ImageShowCase images={productData.products.images} />
 
           <div className="h-96 pt-10">
-            <h3 className="mb-2">{productData.title}</h3>
-            <StarRating rating={productData.stars} className=" mb-6" />
+            <h3 className="mb-2">{productData.products.title}</h3>
+            <StarRating rating={productData.products.stars} className=" mb-6" />
             <p className=" inline-flex gap-4 justify-center mb-6">
-              {productData.discountPrice ? (
+              {productData.products.discountPrice ? (
                 <>
-                  {formatter.format(productData.discountPrice)}
+                  {formatter.format(productData.products.discountPrice)}
                   <span className="text-primary line-through">
-                    {formatter.format(productData.price)}
+                    {formatter.format(productData.products.price)}
                   </span>
                 </>
               ) : (
-                formatter.format(productData.price)
+                formatter.format(productData.products.price)
               )}
             </p>
-            <p className=" text-grey3 mb-16">{productData.description}</p>
+            <p className=" text-grey3 mb-16">
+              {productData.products.description}
+            </p>
             <div className="flex items-center gap-8">
               <Button
                 className="py-3"

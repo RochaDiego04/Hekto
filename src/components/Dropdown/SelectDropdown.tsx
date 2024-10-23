@@ -1,5 +1,5 @@
 import { ChevronDown } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 type SelectDropdownProps = {
   value: string;
@@ -15,9 +15,26 @@ export default function SelectDropdown({
   options,
 }: SelectDropdownProps) {
   const [open, setOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node) // if the div doesnt contain the clicked element
+      ) {
+        setOpen(false); // close it
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [dropdownRef]);
 
   return (
-    <div className="relative max-w-[320px]">
+    <div className="relative max-w-[320px]" ref={dropdownRef}>
       <div
         tabIndex={0}
         onClick={() => setOpen(!open)}
