@@ -8,6 +8,7 @@ import { formatter } from "../../util/formatPrice";
 import { useAppDispatch } from "../../store/hooks";
 import { addItemToCart } from "../../store/cart-slice";
 import "./ProductCard.css";
+import { showAlert } from "../../store/toast-slice";
 
 type ProductCard1Props = {
   productInfo: ProductInfo;
@@ -18,6 +19,7 @@ export default function ProductCard1({ productInfo }: ProductCard1Props) {
 
   function handleCartClick() {
     dispatch(addItemToCart(productInfo));
+    dispatch(showAlert({ message: "Product added to cart", type: "success" }));
   }
 
   return (

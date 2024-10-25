@@ -29,8 +29,6 @@ export default function CardSlider() {
     return <div>Error: {error?.message || "No header cards available"}</div>;
   }
 
-  headerCardsData ? console.log(headerCardsData) : null;
-
   return (
     <div className="w-full bg-bgLightGrey h-[60vh] relative">
       <div className="w-full h-full flex overflow-hidden">
