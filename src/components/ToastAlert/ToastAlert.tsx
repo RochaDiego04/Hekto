@@ -5,6 +5,8 @@ import { RootState } from "../../store/store";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { X } from "lucide-react";
 import Button from "../Button/Button";
+import { motion } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 
 const ToastAlert = () => {
   const { message, isVisible, type } = useAppSelector(
@@ -28,19 +30,26 @@ const ToastAlert = () => {
   if (!portalRoot) return null;
 
   return createPortal(
-    <div
-      ref={alertRef}
-      className={`flex items-center justify-center gap-2 fixed top-2 left-1/2 transform -translate-x-1/2 h-40px z-[1000] p-4 ${
-        type === "error"
-          ? "bg-[var(--danger)] text-[var(--white)]"
-          : "bg-[var(--success-dark)] text-[var(--white)]"
-      } rounded-md text-black bold`}
-    >
-      {message}
-      <Button onClick={() => dispatch(hideAlert())} className="p-0">
-        <X />
-      </Button>
-    </div>,
+    <AnimatePresence>
+      {isVisible && (
+        <motion.div
+          ref={alertRef}
+          initial={{ opacity: 0, y: -30, x: "-50%" }}
+          animate={{ opacity: 1, y: 0, x: "-50%" }}
+          exit={{ opacity: 0, y: 30, x: "-50%" }}
+          transition={{ type: "keyframes" }}
+          className={`flex items-center justify-center gap-2 fixed top-2 h-10 z-[1000] p-4 ${
+            type === "error" ? "bg-[var(--danger)]" : "bg-[var(--success-dark)]"
+          } rounded-md text-white bold`}
+          style={{ left: "50%", transform: "translateX(-50%)" }}
+        >
+          {message}
+          <Button onClick={() => dispatch(hideAlert())} className="p-0">
+            <X />
+          </Button>
+        </motion.div>
+      )}
+    </AnimatePresence>,
     portalRoot
   );
 };
